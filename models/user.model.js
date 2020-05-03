@@ -85,6 +85,24 @@ const user_schema = new Schema({
         type: Number,
         default: 0
     },
+    time_windows: [{
+        shift_start: {
+            type: Number,
+            required: true
+        },
+        shift_end: {
+            type: Number,
+            default: 0
+        },
+        lunch_start: {
+            type: Number,
+            default: 0
+        },
+        lunch_end: {
+            type: Number,
+            default: 0
+        }
+    }],
     group: {
         type: String,
         required: true,

@@ -6,6 +6,26 @@ block content
     p="Active users: " + active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
     p="Active tasks: " + active_tasks.length
     p="Time punch: "
-        a(href="/lunch") Lunch 
-        a(href="/in") In 
-        a(href="/out") Out
+        button(class="update" id="lunch") Lunch 
+        button(class="update" id="in") In 
+        button(class="update" id="out") Out
+
+block append js
+  script.
+    const update = document.getElementsByClassName('update');
+    for (let upd of update) {
+      upd.addEventListener('click', function () {
+        let obj = {type: this.id};
+        fetch(`/user/shift`, {
+          method: 'PUT',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(obj)
+        })
+        .then(res => {
+          if (res.ok) return res.json()
+        })
+        .then(data => {
+          window.location.reload(true)
+        })
+      })
+    }
