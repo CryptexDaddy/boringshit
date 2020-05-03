@@ -6,9 +6,35 @@ block content
     p="Active users: " + active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
     p="Active tasks: " + active_tasks.length
     p="Time punch: "
+        a(href="/lunch") Lunch 
+        a(href="/in") In 
+        a(href="/out") Out
         button(class="update" id="lunch") Lunch 
         button(class="update" id="in") In 
         button(class="update" id="out") Out
+
+
+    .ui.four.statistics
+      .statistic
+        .value=user.total_time
+        .label
+          | Hours worked
+      .statistic
+        .value
+          =active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
+
+        .label
+          | Employes In
+      .statistic
+        .value
+          |  5
+        .label
+          | Appointments Today
+      .statistic
+        .value
+          |       5
+        .label
+          | Total Expenses
 
 block append js
   script.
