@@ -36,8 +36,9 @@ nav ul li {
 .customColor {
   background: #ffffff !important;
 }
+/* declare a 7 column grid on the table */
 #calendar {
-  width: 100%;
+	width: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
@@ -50,7 +51,7 @@ nav ul li {
 }
 
 caption {
-  text-align: center!important;
+	text-align: center;
   grid-column: 1 / -1;
   font-size: 130%;
   font-weight: bold;
@@ -65,23 +66,11 @@ caption {
 #calendar td, #calendar th {
 	padding: 5px;
 	box-sizing:border-box;
-	border: 1px solid rgb(230, 230, 230);
+	border: 1px solid #ccc;
 }
 
 #calendar .weekdays {
-	background: teal;  
-  color: #8e352e;
-  text-decoration: none;
-}
-
-#calendar td, #calendar th {
-  padding: 5px;
-  box-sizing:border-box;
-  border: 1px solid rgb(230, 230, 230);
-}
-
-#calendar .weekdays {
-  background: teal;  
+	background: #8e352e;  
 }
 
 
@@ -97,17 +86,6 @@ caption {
 
 #calendar td {
 	min-height: 180px;
-  text-align: center;
-  text-transform: uppercase;
-  line-height: 20px;
-  border: none !important;
-  padding: 10px 6px;
-  color: #fff;
-  font-size: 13px;
-}
-
-#calendar td {
-  min-height: 180px;
   display: flex;
   flex-direction: column;
 }
@@ -124,17 +102,6 @@ caption {
 	color: #fff;
 	width: 20px;
 	border-radius: 50%;
-  background: #d3d3d3;
-}
-
-#calendar .date {
-  text-align: center;
-  margin-bottom: 5px;
-  padding: 4px;
-  background: #333;
-  color: #fff;
-  width: 20px;
-  border-radius: 50%;
   flex: 0 0 auto;
   align-self: flex-end;
 }
@@ -156,31 +123,8 @@ caption {
 	color: #666;
 	margin: 3px 0 7px 0;
 	text-decoration: none;	
-  font-size: 13px;
-  border-radius: 4px;
-  padding: 5px;
-  margin-bottom: 5px;
-  line-height: 14px;
-  background: #e4f2f2;
-  border: 1px solid #b5dbdc;
-  color: #009aaf;
-  text-decoration: none;
 }
 
-#calendar .event-desc {
-  color: #666;
-  margin: 3px 0 7px 0;
-  text-decoration: none;  
-}
-
-#calendar .total-time{
-  color: #666;
-  font-weight: bold;
-  font-size: 3rem;
-  margin: auto;
-  text-decoration: none;
-  text-align: center;
-}
 #calendar .other-month {
 	background: #f5f5f5;
 	color: #666;
@@ -188,12 +132,6 @@ caption {
 
 /* ============================
 				Mobile Responsiveness
-  background: #f5f5f5;
-  color: #666;
-}
-
-/* ============================
-        Mobile Responsiveness
    ============================*/
 
 
@@ -210,17 +148,6 @@ caption {
 		padding: 10px;
 		margin-bottom: -1px;
 	}
-  #calendar .weekdays, #calendar .other-month {
-    display: none;
-  }
-
-  #calendar li {
-    height: auto !important;
-    border: 1px solid #ededed;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: -1px;
-  }
   
   #calendar, #calendar tr, #calendar tbody {
     grid-template-columns: 1fr;
@@ -233,4 +160,13 @@ caption {
 	#calendar .date {
 		align-self: flex-start;
 	}
+}
+
+#calendar .total-time{
+  color: #666;
+  font-weight: bold;
+  font-size: 3rem;
+  margin: auto;
+  text-decoration: none;
+  text-align: center;
 }
