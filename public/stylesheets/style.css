@@ -223,3 +223,9 @@ caption {
   border-right: 1px solid;
     border-color: #dad9d9;
 }
+.circles {
+  display: table-row;
+}
+.roundCircle {
+  padding-right: 20px;
+}
