@@ -1,7 +1,5 @@
 body {
-  padding: 2rem 1rem;
   font: 18px/1.6 LatoWeb,Helvetica,Arial,sans-serif;
-  max-width: 650px;
   margin: auto;
 }
 
@@ -25,4 +23,12 @@ nav ul li {
   padding: 1rem;
   margin-bottom: 10px;
   border-radius: 10px;
+}
+.elSideNav {
+
+}
+.right {
+  position:absolute;
+  right: 0;
+
 }
