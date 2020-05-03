@@ -1,0 +1,18 @@
+{
+    "_comment1": "// Telegram IDs able to access the Dashboard //",
+    "allowed_ids": ["53473245"],
+    "_comment2": "// Cookie area //",
+    "session_secret": "1234",
+    "cookie_key": "cas_session_id",
+    "_comment3": "// URL page names for better security //",
+    "login_page_name": "login123",
+    "dashboard_page_name": "dashboard123",
+    "_comment4": "// MongoDB area //",
+    "mongodb_url": "mongodb://localhost:27017/tim",
+    "mongodb_user": "",
+    "mongodb_pass": "",
+    "_comment5": "// Self-explanatory //",
+    "telegram_bot_token": "1117110303:AAGB-0jfAQFodvZsN413SEKXbskqCZb28Fs",
+    "_comment6": "// How often to update champion data and sprite coordinates in MongoDB //",
+    "update_champions_db_interval": 3600000
+}

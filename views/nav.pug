@@ -1,0 +1,14 @@
+ul
+    li
+        a(href="/") Home
+
+    if authenticated
+        li 
+            a(href="/user/logout") Logout
+        li Hello,  
+            a(href="/user")=display_name
+    else
+        li
+            a(href="/user/signup") Sign Up
+        li
+            a(href="/user/login") Login

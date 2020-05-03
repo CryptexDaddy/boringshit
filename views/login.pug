@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    if message && message.length
+        .error=message
+    form.normform(action='/user/login', method='POST')
+        fieldset
+            legend Login
+            label(for='email') Email:
+            input#email(type='email' name='email' placeholder='your email' required)
+            label(for='password') Password:
+            input#password(type='password' name='password' placeholder='your password' required)
+        br
+        .inline-buttons
+            input(type='reset' value='Reset')
+            input(type='submit' value='Submit')

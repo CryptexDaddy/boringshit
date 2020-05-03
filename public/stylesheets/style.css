@@ -1,0 +1,28 @@
+body {
+  padding: 2rem 1rem;
+  font: 18px/1.6 LatoWeb,Helvetica,Arial,sans-serif;
+  max-width: 650px;
+  margin: auto;
+}
+
+a {
+  color: #00B7FF;
+}
+
+nav ul{
+  list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.error{
+  background: tomato;
+  color: #FFF;
+  padding: 1rem;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}

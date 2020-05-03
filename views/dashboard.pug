@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1= title
+    p="Hours worked: " + user.total_time
+    p="Active users: " + active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
+    p="Active tasks: " + active_tasks.length
+    p="Time punch: "
+        a(href="/lunch") Lunch 
+        a(href="/in") In 
+        a(href="/out") Out
