@@ -1,6 +1,7 @@
 body {
   font: 18px/1.6 LatoWeb,Helvetica,Arial,sans-serif;
   margin: auto;
+  background: #e8e4e4 !important;
 }
 
 a {
@@ -31,4 +32,10 @@ nav ul li {
   position:absolute;
   right: 0;
 
+}.centerIcon {
+  top:25%;
+  position:absolute;
+}
+.customColor {
+  background: #ffffff !important;
 }
