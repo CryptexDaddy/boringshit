@@ -3,15 +3,17 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
     span.navbar-toggler-icon
   #navbarNav.collapse.navbar-collapse
-    ul.navbar-nav
+    ul.navbar-nav.right
       li.nav-item.active
         a.nav-link(href='#')
           | Home 
           span.sr-only (current)
-      li.nav-item
-        a.nav-link(href='/user/signup') Login
-      li.nav-item
-        a.nav-link(href='#') Pricing
+      if authenticated
+        li.nav-item
+            a.nav-link(href='/user/logout') Logout
+        li.nav-item
+            a.nav-link(href='#')=display_name
+            
       li.nav-item
         a.nav-link.disabled(href='#', tabindex='-1', aria-disabled='true') Disabled
 
