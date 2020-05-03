@@ -22,6 +22,29 @@ router.get('/logout', (req, res, next) => {
   res.redirect('/');
 })
 
+router.put('/shift', async (req, res, next) => {
+  console.log(req.body.type)
+  const found_user = await User.findOne({_id: req.user._id});
+  if (found_user) {
+    switch (req.body.type) {
+      case 'in':
+        if (found_user.time_windows[found_user.time_windows.length - 1].shift_end === 0) return res.sendStatus(400)
+        else found_user.time_windows.push({shift_start: Date.now()})
+        break;
+      case 'out':
+        found_user.time_windows[found_user.time_windows.length - 1].shift_end = Date.now()
+        break;
+      case 'lunch':
+        found_user.time_windows[found_user.time_windows.length - 1].lunch_start === 0 ? 
+        found_user.time_windows[found_user.time_windows.length - 1].lunch_start = Date.now() :
+        found_user.time_windows[found_user.time_windows.length - 1].lunch_end = Date.now()
+        break;
+      default: return res.sendStatus(400);
+    }
+    found_user.save().then(() => res.sendStatus(200))
+  }
+})
+
 router.post('/signup', async (req, res) => {
   const existing_user = await User.findOne({ $or: [{username: req.body.username}, {email: req.body.email}]});
   if (existing_user) return res.status(400).send('User already exists.');
