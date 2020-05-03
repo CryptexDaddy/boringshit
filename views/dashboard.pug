@@ -1,7 +1,85 @@
 extends layout
 
 block content
-    h1= title
+  h1= title
+  .ui.column.grid(style="padding-bottom:10px;")
+    .row
+      .three.wide.column.borderThing(style="background:#ffffff")
+        .hText.mainColorlBlue
+          | Hours worked
+        .lText=user.total_time
+      .three.wide.column.borderThing(style="background:#ffffff")
+        .hText.mainColorlBlue
+          | Employees In
+        .lText=active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
+      .three.wide.column.borderThing(style="background:#ffffff")
+        .hText.mainColorlBlue
+          | Appointments Today
+        .lText=user.total_time
+      .three.wide.column.borderThing(style="background:#ffffff")
+        .hText.mainColorlBlue
+          | Total Expenses
+        .lText=user.total_time
+  .ui.grid
+    .three.column.row
+      .column(style="background:#ffffff;margin-right: 50px;")
+        .hText.mainColorlBlue
+          | Who's Working
+        .ui.relaxed.list
+          .item
+            img.ui.avatar.image(src='https://f0.pngfuel.com/png/312/283/man-face-clip-art-png-clip-art-thumbnail.png')
+            .content
+              a.header James Smith
+              .description
+                | Shipping 
+                a
+                  b Went for Lunch
+                |  just now.
+          .item
+            img.ui.avatar.image(src='https://f0.pngfuel.com/png/312/283/man-face-clip-art-png-clip-art-thumbnail.png')
+            .content
+              a.header Timothy Miller
+              .description
+                | Equipment & Materials 
+                a
+                  b Last Online
+                |  10 hours ago.
+          .item
+            img.ui.avatar.image(src='https://f0.pngfuel.com/png/312/283/man-face-clip-art-png-clip-art-thumbnail.png')
+            .content
+              a.header Sam Houston
+              .description
+                | Graphic Artist
+                a
+                  b Went for Lunch 
+                |  just now.
+
+     
+      
+      .column(style="background:#ffffff")
+        .hText.mainColorlBlue
+          | Time Punch
+        h1(style="text-align:center;") Current Date
+   
+            .roundCircleLunch
+              .roundCircleText Lunch
+            
+            .roundCircleLunch(style="background:transparent;")
+              
+
+            .roundCircleOut
+              .roundCircleText Out
+    
+
+
+
+
+   
+        
+  
+    
+
+   
     p="Hours worked: " + user.total_time
     p="Active users: " + active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
     p="Active tasks: " + active_tasks.length
@@ -14,27 +92,8 @@ block content
         button(class="update" id="out") Out
 
 
-    .ui.four.statistics
-      .statistic
-        .value=user.total_time
-        .label
-          | Hours worked
-      .statistic
-        .value
-          =active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
 
-        .label
-          | Employes In
-      .statistic
-        .value
-          |  5
-        .label
-          | Appointments Today
-      .statistic
-        .value
-          |       5
-        .label
-          | Total Expenses
+        
 
 block append js
   script.
