@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1= title
+    table(id="calendar")
+        caption=selected_week
+        tr(class="weekdays")
+            th(scope='col') Sunday
+            th(scope='col') Monday
+            th(scope='col') Tuesday
+            th(scope='col') Wednesday
+            th(scope='col') Thursday
+            th(scope='col') Friday
+            th(scope='col') Saturday
+        tr(class="days")
+            each val in [1, 2, 3, 4, 5, 6, 7]
+                td.day
+                    if days_arr[val]
+                        .total-time=days_arr[val].toFixed(2).replace('.', ':')
+    p="Total hours this week: " + Object.values(days_arr).reduce((a, b) => a + b).toFixed(2)
+    p="Overtime hours this week: " + (Object.values(days_arr).filter(val => val > 8).length ? Object.values(days_arr).filter(val => val > 8).reduce((a, b) => a + b).toFixed(2) : "0")

@@ -34,6 +34,7 @@ db.on('error', err => {console.error(err)});
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
 const dashboardRouter = require('./routes/dashboard');
+const hoursRouter = require('./routes/hours')
 
 var app = express();
 
@@ -88,6 +89,7 @@ app.use(flash());
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/hours', hoursRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
