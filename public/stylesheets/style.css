@@ -70,7 +70,7 @@ caption {
 }
 
 #calendar .weekdays {
-	background: #8e352e;  
+	background: teal;  
 }
 
 
@@ -98,10 +98,8 @@ caption {
 	text-align: center;
 	margin-bottom: 5px;
 	padding: 4px;
-	background: #333;
-	color: #fff;
+	color: #333;
 	width: 20px;
-	border-radius: 50%;
   flex: 0 0 auto;
   align-self: flex-end;
 }
