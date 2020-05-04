@@ -2,30 +2,31 @@ extends layout
 
 block content
     h1= title
-    table.ui.celled.table
-        thead
-            tr
-            th Title
-            th Task Start
-            th Status
-            th Task End
-            th Employees
-            th.collapsing Delete
-        tbody
-            each task in tasks
-                tr(class="task")
-                    td=task.title
-                    td=new Date(task.time_alloted.task_start).toString()
-                    td=task.status
-                    td=new Date(task.time_alloted.task_end).toString()
-                    td=task.employees.map(emp => emp.display_name).join(', ')
-                    td
-                        .ui.form
-                            .inline.field
-                                .ui.checkbox
-                                    input(type='checkbox', tabindex='0')
-                                    label
-    button.ui.primary.button
-        | Add Task
-    button.ui.primary.button
-        | Edit Task
+    .tableMain
+        table.ui.celled.table
+            thead
+                tr
+                th Title
+                th Task Start
+                th Status
+                th Task End
+                th Employees
+                th.collapsing Delete
+            tbody
+                each task in tasks
+                    tr(class="task")
+                        td=task.title
+                        td=new Date(task.time_alloted.task_start).toString()
+                        td=task.status
+                        td=new Date(task.time_alloted.task_end).toString()
+                        td=task.employees.map(emp => emp.display_name).join(', ')
+                        td
+                            .ui.form
+                                .inline.field
+                                    .ui.checkbox
+                                        input(type='checkbox', tabindex='0')
+                                        label
+        button.ui.primary.button
+            | Add Task
+        button.ui.primary.button
+            | Edit Task
