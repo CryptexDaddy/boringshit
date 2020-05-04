@@ -20,8 +20,10 @@ block content
                 td=task.employees.map(emp => emp.display_name).join(', ')
                 td
                     button(class="update") ❌
-
-    table.ui.celled.table
+    i.fas.fa-edit.fa-lg(style="margin-top:25px; color:#008080")   Edit
+    i.fas.fa-save.fa-lg(style="margin-top:25px; color:#008080; margin-left:15px;")   Save
+    table.ui.celled.table(style="margin-top:10px;")
+        
         thead
             tr
             th Submission#
@@ -61,13 +63,7 @@ block content
                                 label
             tr
             td.negative
-                .ui.form
-                    .inline.field
-                        .ui.checkbox
-                            input(type='checkbox', tabindex='0')
-                            label Tuesday
-
-
+                | gay
             td 10
             td 10
             td 10
@@ -134,3 +130,9 @@ block content
                         .ui.checkbox
                             input(type='checkbox', tabindex='0')
                             label
+        
+    button.ui.primary.button
+        | Add Task
+    button.ui.primary.button
+        | Edit Task
+
