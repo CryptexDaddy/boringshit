@@ -6,6 +6,7 @@ const {Company} = require('../models/company.model');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
+    const tasks = await Task.find({}).populate('employees').exec()
     // const new_comp = new Company({
     //     name: 'Caveman Inc',
     //     address: 'Ranczo Wypalanki 123',
@@ -13,7 +14,11 @@ router.get('/', async function(req, res, next) {
     //     contact: 'support@timcock.com'
     // })
     // new_comp.save()
-    res.render('tasks', { title: 'Manage Tasks' });
+    // const task = await Task.findOne({}).exec()
+    // const user = await User.findOne({}).exec()
+    // task.employees.push(user._id)
+    // task.save()
+    res.render('tasks', { title: 'Manage Tasks', tasks });
 });
 
 module.exports = router;

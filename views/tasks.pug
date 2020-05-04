@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1= title
+    table(id="calendar")
+        caption=selected_week
+        tr(class="weekdays")
+            th(scope='col') Title
+            th(scope='col') Date Assigned
+            th(scope='col') Status
+            th(scope='col') Time Alloted
+            th(scope='col') Employees
+            th(scope='col') Delete
+        each task in tasks
+            tr(class="task")
+                td=task.title
+                td=task.time_alloted.task_start
+                td=task.status
+                td=task.time_alloted.task_end
+                td=task.employees.map(emp => emp.display_name).join(', ')
+                td
+                    button(class="update") ❌
