@@ -26,12 +26,12 @@ const task_schema = new Schema({
         default: 0
     },
     managers: [{
-        type: String,
-        default: ''
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }],
     employees: [{
-        type: String,
-        default: ''
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }],
     time_alloted: {
         task_start: {

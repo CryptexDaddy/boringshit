@@ -38,9 +38,9 @@ const user_schema = new Schema({
         required: true,
         default: 0
     },
-    company_id: {
-        type: String,
-        default: ''
+    company: {
+        type: Schema.Types.ObjectId,
+        ref: 'Company'
     },
     created_at: {
         type: Number,

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const task_schema = new Schema({
+const company_schema = new Schema({
     name: {
         type: String,
         trim: true,
@@ -31,6 +31,6 @@ const task_schema = new Schema({
     }
 })
 
-const Task = mongoose.model('Task', task_schema)
+const Company = mongoose.model('Company', company_schema)
 
-exports.Task = Task;
+exports.Company = Company;

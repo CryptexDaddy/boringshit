@@ -36,6 +36,7 @@ const usersRouter = require('./routes/user');
 const dashboardRouter = require('./routes/dashboard');
 const hoursRouter = require('./routes/hours')
 const calendarRouter = require('./routes/calendar')
+const supportRouter = require('./routes/support')
 
 var app = express();
 
@@ -92,6 +93,7 @@ app.use('/user', usersRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/hours', hoursRouter);
 app.use('/calendar', calendarRouter);
+app.use('/support', supportRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -110,10 +112,9 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-function is_authorized_bool(req, res, next) {
+async function is_authorized_bool(req, res, next) {
   if (req.isAuthenticated()) {
-    req.app.locals.display_name = req.user.display_name;
-    req.app.locals.user = req.user
+    req.app.locals.user = await User.findOne({_id:req.user._id}).populate('company').exec()
   }
   req.app.locals.authenticated = req.isAuthenticated()
   console.log(req.isAuthenticated());

@@ -17,5 +17,5 @@ block content
                 td.day
                     if days_arr[val]
                         .total-time=days_arr[val].toFixed(2).replace('.', ':')
-    p="Total hours this week: " + Object.values(days_arr).reduce((a, b) => a + b).toFixed(2)
+    p="Total hours this week: " + (Object.keys(days_arr).length ? Object.values(days_arr).reduce((a, b) => a + b).toFixed(2) : "0")
     p="Overtime hours this week: " + (Object.values(days_arr).filter(val => val > 8).length ? Object.values(days_arr).filter(val => val > 8).reduce((a, b) => a + b).toFixed(2) : "0")

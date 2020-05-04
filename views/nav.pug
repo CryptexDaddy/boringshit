@@ -3,11 +3,12 @@
     | Home
   .right.menu
     if authenticated
+        a.item(href="#")=(user.company ? user.company.name : "")
         a.item(href="#")
             | Notification
         a.ui.item(href="user/logout/")
             | Logout
-        a.item.ui(href="#")=display_name
+        a.item.ui(href="#")=user.display_name
     else
         a.item(href="/user/signup") Sign Up
         a.item(href="/user/Login") Login

@@ -22,8 +22,8 @@ const shift_schema = new Schema({
         required: true
     },
     employees: [{
-        type: String,
-        default: ''
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }]
 })
 

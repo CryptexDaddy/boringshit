@@ -26,13 +26,18 @@ router.put('/shift', async (req, res, next) => {
   console.log(req.body.type)
   const found_user = await User.findOne({_id: req.user._id});
   if (found_user) {
+
     switch (req.body.type) {
       case 'in':
-        if (found_user.time_windows[found_user.time_windows.length - 1].shift_end === 0) return res.sendStatus(400)
-        else found_user.time_windows.push({shift_start: Date.now()})
+        if (found_user.time_windows[found_user.time_windows.length - 1] && found_user.time_windows[found_user.time_windows.length - 1].shift_end) return res.sendStatus(400)
+        else {
+          found_user.time_windows.push({shift_start: Date.now()});
+          found_user.status = 1;
+        }
         break;
       case 'out':
         found_user.time_windows[found_user.time_windows.length - 1].shift_end = Date.now()
+        found_user.status = 0;
         break;
       case 'lunch':
         found_user.time_windows[found_user.time_windows.length - 1].lunch_start === 0 ? 
