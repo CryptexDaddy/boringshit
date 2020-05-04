@@ -32,7 +32,17 @@ const task_schema = new Schema({
     employees: [{
         type: String,
         default: ''
-    }]
+    }],
+    time_alloted: {
+        task_start: {
+            type: Number,
+            default: Date.now()
+        },
+        task_end: {
+            type: Number,
+            default: Date.now() + 604800000
+        }
+    }
 })
 
 const Task = mongoose.model('Task', task_schema)
