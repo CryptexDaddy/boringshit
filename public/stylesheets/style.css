@@ -85,7 +85,7 @@ caption {
 }
 
 #calendar td {
-	min-height: 180px;
+	min-height: 150px;
   display: flex;
   flex-direction: column;
 }
@@ -228,4 +228,13 @@ caption {
 .roundCircle {
   padding-right: 20px;
   
+}
+.cBlue {
+  color:dodgerblue;
+}
+.alignCenter {
+  text-align:center;
+}
+.whiteBg {
+  background: #ffffff
 }

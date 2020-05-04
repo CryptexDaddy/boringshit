@@ -2,3 +2,25 @@ extends layout
 
 block content
     h1= title
+    span.ui.large.header.spanClr(style="float:right;margin-right:15px;color:#8e8e8e") Need help with something, #{user.display_name} ?
+    .ui.grid.celled
+        .four.wide.column.whiteBg
+            .alignCenter
+                i.fas.fa-phone-square-alt.fa-10x.cBlue
+            h1 Call Us
+            h3 800-123-1234
+        .four.wide.column.whiteBg
+            .alignCenter
+                i.fas.fa-envelope-square.fa-10x.cBlue
+            h1 Email Us
+            h3 support@tim.com
+        .four.wide.column.whiteBg
+            .alignCenter
+                i.fas.fa-comment-alt.fa-10x.cBlue
+            h1 Chat
+            h3 Live chat Available 24/7
+        .four.wide.column.whiteBg
+            .alignCenter
+                i.fas.fa-question.fa-10x.cBlue
+            h1 FAQs
+            h3 Frequently Asked Questions   
