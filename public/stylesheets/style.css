@@ -183,7 +183,8 @@ caption {
   width: 25%;
 }
 .hText {
-  padding: 10px;
+  padding-top:5px;
+  padding-bottom:5px;
   font-size: larger;
   font-weight: 700;
 }
@@ -228,4 +229,5 @@ caption {
 }
 .roundCircle {
   padding-right: 20px;
+  
 }
