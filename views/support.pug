@@ -2,18 +2,18 @@ extends layout
 
 block content
     h1= title
-    span.ui.large.header.spanClr(style="float:right;margin-right:15px;color:#8e8e8e") Need help with something, #{user.display_name} ?
+    span.ui.large.header.spanClr(style="float:right;margin-right:15px;color:#8e8e8e") Need help with something, #{user.display_name}?
     .ui.grid.celled
         .four.wide.column.whiteBg
             .alignCenter
                 i.fas.fa-phone-square-alt.fa-10x.cBlue
             h1 Call Us
-            h3 800-123-1234
+            h3=user.company.phone
         .four.wide.column.whiteBg
             .alignCenter
                 i.fas.fa-envelope-square.fa-10x.cBlue
             h1 Email Us
-            h3 support@tim.com
+            h3=user.company.contact
         .four.wide.column.whiteBg
             .alignCenter
                 i.fas.fa-comment-alt.fa-10x.cBlue
