@@ -37,6 +37,7 @@ const dashboardRouter = require('./routes/dashboard');
 const hoursRouter = require('./routes/hours')
 const calendarRouter = require('./routes/calendar')
 const supportRouter = require('./routes/support')
+const tasksRouter = require('./routes/tasks')
 
 var app = express();
 
@@ -94,6 +95,7 @@ app.use('/dashboard', dashboardRouter);
 app.use('/hours', hoursRouter);
 app.use('/calendar', calendarRouter);
 app.use('/support', supportRouter);
+app.use('/tasks', tasksRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
