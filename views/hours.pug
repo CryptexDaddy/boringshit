@@ -19,90 +19,90 @@ block content
                         .total-time=days_arr[val].toFixed(2).replace('.', ':')
     p="Total hours this week: " + (Object.keys(days_arr).length ? Object.values(days_arr).reduce((a, b) => a + b).toFixed(2) : "0")
     p="Overtime hours this week: " + (Object.values(days_arr).filter(val => val > 8).length ? Object.values(days_arr).filter(val => val > 8).reduce((a, b) => a + b).toFixed(2) : "0")
+    .tableMain
+        table.ui.celled.table
+            thead
+                tr
+                th Day
+                th In
+                th Out
+                th Lunch
+                th Total
+            tbody
+                tr
+                td.positive
+                    i.icon.check
+                    | Sunday
+                td 10
+                td 10
+                td 10
+                td 10
+                tr.positive
+                td.positive
+                    i.icon.check
+                    | Monday
+                td 10
+                td 10
+                td 10
+                td 10
+                tr
+                td.negative
+                    .ui.form
+                        .inline.field
+                            .ui.checkbox
+                                input(type='checkbox', tabindex='0')
+                                label Tuesday
 
-    table.ui.celled.table
-        thead
-            tr
-            th Day
-            th In
-            th Out
-            th Lunch
-            th Total
-        tbody
-            tr
-            td.positive
-                i.icon.check
-                | Sunday
-            td 10
-            td 10
-            td 10
-            td 10
-            tr.positive
-            td.positive
-                i.icon.check
-                | Monday
-            td 10
-            td 10
-            td 10
-            td 10
-            tr
-            td.negative
-                .ui.form
-                    .inline.field
-                        .ui.checkbox
-                            input(type='checkbox', tabindex='0')
-                            label Tuesday
 
+                td 10
+                td 10
+                td 10
+                td 10
+                tr
+                td.negative
+                    i.icon.close
+                    | Wednesday
+                td 10
+                td 10
+                td 10
+                td 10
+                tr
+                td.positive
+                    i.icon.check
+                    | Thursday
+                td 10
+                td 10
+                td 10
+                td 10
+                tr
+                td.negative
+                    i.icon.close
+                    | Friday
+                td 10
+                td 10
+                td 10
+                td 10
+                tr
+                td.positive
+                    i.icon.check
+                    | Saturday
+                td 10
+                td 10
+                td 10
+                td 10
 
-            td 10
-            td 10
-            td 10
-            td 10
-            tr
-            td.negative
-                i.icon.close
-                | Wednesday
-            td 10
-            td 10
-            td 10
-            td 10
-            tr
-            td.positive
-                i.icon.check
-                | Thursday
-            td 10
-            td 10
-            td 10
-            td 10
-            tr
-            td.negative
-                i.icon.close
-                | Friday
-            td 10
-            td 10
-            td 10
-            td 10
-            tr
-            td.positive
-                i.icon.check
-                | Saturday
-            td 10
-            td 10
-            td 10
-            td 10
-
-    .ui.modal
-        i.close.icon
-        .header
-            | Modal Title
-        .image.content
-            .image
-            | An image can appear on left or an icon
-            .description
-            | A description can appear on the right
-        .actions
-            .ui.button Cancel
-            .ui.button OK
+        .ui.modal
+            i.close.icon
+            .header
+                | Modal Title
+            .image.content
+                .image
+                | An image can appear on left or an icon
+                .description
+                | A description can appear on the right
+            .actions
+                .ui.button Cancel
+                .ui.button OK
 
     script.
         $('.ui.modal')
