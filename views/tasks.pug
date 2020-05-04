@@ -2,135 +2,26 @@ extends layout
 
 block content
     h1= title
-    table(id="calendar")
-        caption=selected_week
-        tr(class="weekdays")
-            th(scope='col') Title
-            th(scope='col') Date Assigned
-            th(scope='col') Status
-            th(scope='col') Time Alloted
-            th(scope='col') Employees
-            th(scope='col') Delete
-        each task in tasks
-            tr(class="task")
-                td=task.title
-                td=task.time_alloted.task_start
-                td=task.status
-                td=task.time_alloted.task_end
-                td=task.employees.map(emp => emp.display_name).join(', ')
-                td
-                    button(class="update") ❌
-
     table.ui.celled.table
         thead
             tr
-            th Submission#
-            th Date
-            th Amount
-            th Overtime
-            th Employee
-            th.collapsing Approve
+            th Title
+            th Task Start
+            th Status
+            th Task End
+            th Employees
+            th.collapsing Delete
         tbody
-            tr
-            td.positive
-                i.icon.check
-                | Sunday
-            td 10
-            td 10
-            td 10
-            td 10
-            td
-                .ui.form
-                    .inline.field
-                        .ui.checkbox
-                            input(type='checkbox', tabindex='0')
-                            label
-            tr.positive
-            td.positive
-                i.icon.check
-                | Monday
-            td 10
-            td 10
-            td 10
-            td 10
-            td
-                .ui.form
-                        .inline.field
-                            .ui.checkbox
-                                input(type='checkbox', tabindex='0')
-                                label
-            tr
-            td.negative
-                .ui.form
-                    .inline.field
-                        .ui.checkbox
-                            input(type='checkbox', tabindex='0')
-                            label Tuesday
-
-
-            td 10
-            td 10
-            td 10
-            td 10
-            td
-                .ui.form
-                        .inline.field
-                            .ui.checkbox
-                                input(type='checkbox', tabindex='0')
-                                label
-            tr
-            td.negative
-                i.icon.close
-                | Wednesday
-            td 10
-            td 10
-            td 10
-            td 10
-            td
-                .ui.form
-                        .inline.field
-                            .ui.checkbox
-                                input(type='checkbox', tabindex='0')
-                                label
-            tr
-            td.positive
-                i.icon.check
-                | Thursday
-            td 10
-            td 10
-            td 10
-            td 10
-            td
-                .ui.form
-                        .inline.field
-                            .ui.checkbox
-                                input(type='checkbox', tabindex='0')
-                                label
-            tr
-            td.negative
-                i.icon.close
-                | Friday
-            td 10
-            td 10
-            td 10
-            td 10
-            td
-                .ui.form
-                    .inline.field
-                        .ui.checkbox
-                            input(type='checkbox', tabindex='0')
-                            label
-            tr
-            td.positive
-                i.icon.check
-                | Saturday
-            td 10
-            td 10
-            td 10
-            td 10
-            td
-                .ui.form
-                    .inline.field
-                        .ui.checkbox
-                            input(type='checkbox', tabindex='0')
-                            label
+            each task in tasks
+                tr(class="task")
+                    td=task.title
+                    td=new Date(task.time_alloted.task_start).toString()
+                    td=task.status
+                    td=new Date(task.time_alloted.task_end).toString()
+                    td=task.employees.map(emp => emp.display_name).join(', ')
+                    td
+                        .ui.form
+                            .inline.field
+                                .ui.checkbox
+                                    input(type='checkbox', tabindex='0')
+                                    label
