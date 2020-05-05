@@ -226,7 +226,6 @@ caption {
   vertical-align: middle;
 }
 
-}
 .roundCircle {
   padding-right: 20px;
   
@@ -259,4 +258,13 @@ caption {
   line-height: 9rem;
   display: block;
   margin-bottom: 15px;
+}
+.cBlueBg {
+  background: dodgerblue;
+}
+.modalCenterForm {
+  background-color: #FFDC00;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
 }
