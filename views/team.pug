@@ -2,17 +2,18 @@ extends layout
 
 block content
     h1= title
-    table.ui.celled.table
-        thead
-            tr
-            th Name (Last, First)
-            th Department
-            th Email
-            th Extension
-        tbody
-            each member in team_members
+    .mainTable
+        table.ui.celled.table
+            thead
                 tr
-                    td(data-label='Name')!=`<span style="color: ${member.status === 0 ? 'grey' : member.status === 1 ? 'green' : member.status === 2 ? 'orange' : 'red' };">⬤</span> ${member.display_name}`
-                    td(data-label='Department')=member.description
-                    td(data-label='Email')=member.email
-                    td(data-label='Extension')=team_members.indexOf(member)+1
+                th Name (Last, First)
+                th Department
+                th Email
+                th Extension
+            tbody
+                each member in team_members
+                    tr
+                        td(data-label='Name')!=`<span style="color: ${member.status === 0 ? 'grey' : member.status === 1 ? 'green' : member.status === 2 ? 'orange' : 'red' };">⬤</span> ${member.display_name}`
+                        td(data-label='Department')=member.description
+                        td(data-label='Email')=member.email
+                        td(data-label='Extension')=team_members.indexOf(member)+1
