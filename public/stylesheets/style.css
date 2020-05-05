@@ -216,8 +216,16 @@ caption {
   border-right: 1px solid;
     border-color: #dad9d9;
 }
-.circles {
-  display: table-row;
+.circles_container {
+  display: inline-flex;
+  width: 100%;
+  place-content: space-between;
+  align-items: center;
+}
+.circles{
+  vertical-align: middle;
+}
+
 }
 .roundCircle {
   padding-right: 20px;
@@ -236,12 +244,19 @@ caption {
 {
   margin-right:25px;
 }
-.table_text_block {
-  display: inline-block;
+.circles_text_block {
   vertical-align: middle;
 }
-.table_text_block span {
+.circles_text_block span {
   display: block;
   padding: 0.25rem;
   font-size: 1.15rem;
+  opacity: 0.5;
+}
+#time_punch_date{
+  text-align: center;
+  font-size: 8.5rem;
+  line-height: 9rem;
+  display: block;
+  margin-bottom: 15px;
 }
