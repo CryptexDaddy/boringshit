@@ -61,33 +61,18 @@ block content
           | Time Punch
         h1(style="text-align:center;") Current Date
         .circles
-          .roundCircle
-            .roundCircleLunch
-              .roundCircleText Lunch
-          
-          .roundCircleOut
-            .roundCircleText Out
-    
-
-
-
-
-   
-        
-  
-    
-
+          button.round_circle.circle_lunch#lunch Lunch
+          if user.time_windows.length && user.time_windows[user.time_windows.length-1].shift_end
+            button.round_circle.circle_in.update#in In
+          else
+            button.round_circle.circle_out.update#out Out
+          .table_text_block 
+            span!=user.time_windows.length && user.time_windows[user.time_windows.length-1].shift_start ? "<b>IN</b> " + new Date(user.time_windows[user.time_windows.length-1].shift_start).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }) : "<b>---</b>"
+            span!=user.time_windows.length && user.time_windows[user.time_windows.length-1].shift_end ? "<b>OUT</b> " + new Date(user.time_windows[user.time_windows.length-1].shift_end).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }) : "<b>---</b>"
    
     p="Hours worked: " + user.total_time
     p="Active users: " + active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
     p="Active tasks: " + active_tasks.length
-    p="Time punch: "
-        a(href="/lunch") Lunch 
-        a(href="/in") In 
-        a(href="/out") Out
-        button(class="update" id="lunch") Lunch 
-        button(class="update" id="in") In 
-        button(class="update" id="out") Out
 
 
 

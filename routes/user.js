@@ -30,7 +30,7 @@ router.put('/shift', async (req, res, next) => {
 
     switch (req.body.type) {
       case 'in':
-        if (found_user.time_windows[found_user.time_windows.length - 1] && found_user.time_windows[found_user.time_windows.length - 1].shift_end) return res.sendStatus(400)
+        if (found_user.time_windows.length && found_user.time_windows[found_user.time_windows.length - 1].shift_end === 0) return res.sendStatus(400)
         else {
           found_user.time_windows.push({shift_start: Date.now()});
           found_user.status = 1;
@@ -47,7 +47,7 @@ router.put('/shift', async (req, res, next) => {
         break;
       default: return res.sendStatus(400);
     }
-    found_user.save().then(() => res.sendStatus(200))
+    found_user.save().then(doc => res.send(doc)).catch(err => res.send(err))
   }
 })
 
