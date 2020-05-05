@@ -7,7 +7,7 @@ block content
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Hours worked
-        .lText=user.total_time
+        .lText=[...user.time_windows.filter(val => val.shift_start && val.shift_end).map(val => Math.abs(val.shift_end - val.shift_start)/3600000), ...user.time_windows.filter(val => val.shift_start && !val.shift_end).map(val => Math.abs(Date.now() - val.shift_start)/3600000)].reduce((a, b) => a + b).toFixed(2).replace('.', ':')
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Employees In
@@ -15,11 +15,11 @@ block content
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Appointments Today
-        .lText=user.total_time
+        .lText=active_tasks.length
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Total Expenses
-        .lText=user.total_time
+        .lText="$" + user.total_time
   .ui.grid
     .three.column.row
       .column(style="background:#ffffff;margin-right: 50px; padding-bottom:10px;")
@@ -69,10 +69,6 @@ block content
           .table_text_block 
             span!=user.time_windows.length && user.time_windows[user.time_windows.length-1].shift_start ? "<b>IN</b> " + new Date(user.time_windows[user.time_windows.length-1].shift_start).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }) : "<b>---</b>"
             span!=user.time_windows.length && user.time_windows[user.time_windows.length-1].shift_end ? "<b>OUT</b> " + new Date(user.time_windows[user.time_windows.length-1].shift_end).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }) : "<b>---</b>"
-   
-    p="Hours worked: " + user.total_time
-    p="Active users: " + active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
-    p="Active tasks: " + active_tasks.length
 
 
 
