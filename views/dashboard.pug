@@ -7,7 +7,8 @@ block content
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Hours worked
-        .lText=[...user.time_windows.filter(val => val.shift_start && val.shift_end).map(val => Math.abs(val.shift_end - val.shift_start)/3600000), ...user.time_windows.filter(val => val.shift_start && !val.shift_end).map(val => Math.abs(Date.now() - val.shift_start)/3600000)].reduce((a, b) => a + b).toFixed(2).replace('.', ':')
+        -var total_time = [...user.time_windows.filter(val => val.shift_start && val.shift_end).map(val => Math.abs(val.shift_end - val.shift_start)/3600000), ...user.time_windows.filter(val => val.shift_start && !val.shift_end).map(val => Math.abs(Date.now() - val.shift_start)/3600000)]
+        .lText=total_time.length ? total_time.reduce((a, b) => a + b).toFixed(2).replace('.', ':') : "0:00"
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Employees In
@@ -62,7 +63,7 @@ block content
         span#time_punch_date(style="text-align:center;")=new Date().toLocaleDateString("en-US", {month: 'long', day: 'numeric'}).split(' ').map(val => val.slice(0,3)).join(' ')
         .circles_container
           .circles
-            button.round_circle.circle_lunch#lunch Lunch
+            button.round_circle.circle_lunch.update#lunch Lunch
             if user.time_windows.length && user.time_windows[user.time_windows.length-1].shift_end
               button.round_circle.circle_in.update#in In
             else
