@@ -19,6 +19,33 @@ block content
                         .total-time=days_arr[val].toFixed(2).replace('.', ':')
     p="Total hours this week: " + (Object.keys(days_arr).length ? Object.values(days_arr).reduce((a, b) => a + b).toFixed(2).replace('.', ':') : "0")
     p="Overtime hours this week: " + (Object.values(days_arr).filter(val => val > 8).length ? Object.values(days_arr).filter(val => val > 8).map(val => val - 8).reduce((a, b) => a + b).toFixed(2).replace('.', ':') : "0")
+    
+    
+    .ui.modal.large#kek
+        i.close.icon
+        .ui.two.column.grid.row.whiteBg
+            .column
+                .formShit
+                    form.ui.form
+                        .field.eight.wide
+                            
+                            input(type='text', name='first-name', placeholder='First Name')
+                        .field.eight.wide
+                            
+                            input(type='text', name='last-name', placeholder='Last Name')
+                        .field
+                            .ui.checkbox
+                                input.hidden(type='checkbox', tabindex='0')
+                                label Stay signed in
+                        button.ui.button(type='submit', style='float:right;') Submit
+
+            .column.cBlueBg
+                .image.content
+                    img.image(src='https://logofirmowe.pl/a/wp-content/uploads/2018/05/mcdonalds-definicja-logo-e1527206240422.png')
+
+                
+                
+
     .tableMain
         table.ui.celled.table
             thead
@@ -91,20 +118,13 @@ block content
                 td 10
                 td 10
 
-        .ui.modal
-            i.close.icon
-            .header
-                | Modal Title
-            .image.content
-                .image
-                | An image can appear on left or an icon
-                .description
-                | A description can appear on the right
-            .actions
-                .ui.button Cancel
-                .ui.button OK
+        
 
     script.
-        $('.ui.modal')
-        .modal()
-        ;
+        function kek() {
+            $('#kek')
+            .modal({
+                centered: false
+            })
+            .modal('show')
+            ; }
