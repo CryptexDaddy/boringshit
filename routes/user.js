@@ -89,5 +89,9 @@ router.post('/tasks/create', async (req,res,next)=>{
   })
   new_task.save().then(() => res.redirect('/tasks')).catch(err => res.send(err))
 })
+router.put('/tasks/delete', async (req,res,next)=>{
+  if (!Object.keys(req.body).length) return res.sendStatus(400);
+  Task.deleteMany({_id: {$in: req.body}}).then(() => res.redirect('/tasks')).catch(err => res.send(err))
+})
 
 module.exports = router;

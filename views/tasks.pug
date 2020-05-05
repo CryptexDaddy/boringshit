@@ -34,10 +34,12 @@ block content
                             .ui.form
                                 .inline.field
                                     .ui.checkbox
-                                        input(type='checkbox', tabindex='0')
+                                        input(type='checkbox', tabindex='0' name='delete')
                                         label
         button.ui.primary.button#update
-            | Edit Task
+            | Edit Tasks
+        button.ui.primary.button#delete
+            | Delete Tasks
     form(action=`/user/tasks/create` method='POST')
         fieldset(class="create_wrapper")
             table(class="create_container")
@@ -78,6 +80,7 @@ block append js
     for (let elem of [...inputs, ...selects]) {
         elem.addEventListener('change', (event) => {
             const closest_tr = elem.closest('tr');
+            if (changed_trs.includes(closest_tr)) return
             closest_tr.style.background = "#92A8D1"
             changed_trs.push(closest_tr)
         })
@@ -88,7 +91,6 @@ block append js
         if (!changed_trs.length) return;
         const obj_arr = [];
         for (tr of changed_trs) {
-            console.log(tr)
             const obj = {
                 id: tr.id,
                 title: tr.querySelector('input[name="title"]').value,
@@ -102,6 +104,22 @@ block append js
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(obj_arr)
+        })
+        .then(res => {
+            if (res.ok) return res.json()
+        })
+        .then(data => {
+            window.location.reload(true)
+        })
+    })
+    const del = document.getElementById('delete');
+    del.addEventListener('click', function () {
+        if (!changed_trs.length) return;
+        const obj_arr = changed_trs.filter(tr => tr.querySelector('input[name="delete"]') && tr.querySelector('input[name="delete"]').checked);
+        fetch(`/user/tasks/delete`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(obj_arr.map(el => el.id))
         })
         .then(res => {
             if (res.ok) return res.json()
