@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const {User} = require('../models/user.model');
+const {Task} = require('../models/task.model');
 const passport = require('passport');
 const argon2 = require('argon2');
 
@@ -63,6 +64,30 @@ router.post('/signup', async (req, res) => {
   .catch(err => res.status(400).send(err))
 })
 
-router.post('/login', passport.authenticate('local', {session: true, successRedirect: '/', failureFlash: true, failureRedirect: '/user/login'}));
+router.post('/login', passport.authenticate('local', {session: true, successRedirect: '/dashboard', failureFlash: true, failureRedirect: '/user/login'}));
+
+router.put('/tasks/update', async (req,res,next) => {
+  if (!req.body.length) return res.sendStatus(400);
+  for (let entry of req.body) {
+    const task = await Task.findOne({_id: entry.id}).exec()
+    if (!task) continue
+    task.title=entry.title
+    task.time_alloted.task_start = Date.parse(entry.task_start)
+    task.time_alloted.task_end = Date.parse(entry.task_end)
+    task.time_alloted.status = Number(entry.status)
+    task.save().then(doc => res.send(doc)).catch(err => res.send(err))
+    console.log(entry.status)
+  }
+})
+router.post('/tasks/create', async (req,res,next)=>{
+  if (!Object.keys(req.body).length) return res.sendStatus(400);
+  const new_task = new Task({
+    title: req.body.title,
+    "time_alloted.task_start": Date.parse(req.body["task-start"]),
+    status: Number(req.body.status),
+    "time_alloted.task_end": Date.parse(req.body['task-end'])
+  })
+  new_task.save().then(() => res.redirect('/tasks')).catch(err => res.send(err))
+})
 
 module.exports = router;
