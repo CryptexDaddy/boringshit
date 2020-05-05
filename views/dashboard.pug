@@ -12,7 +12,7 @@ block content
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Employees In
-        .lText=active_users.length + " (" + active_users.map(doc => doc.display_name).join(', ') + ")"
+        .lText=active_users.length ? active_users.length + ` (${active_users.map(doc => doc.display_name).join(', ')})` : "0"
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Appointments Today
@@ -64,7 +64,7 @@ block content
         .circles_container
           .circles
             button.round_circle.circle_lunch.update#lunch Lunch
-            if user.time_windows.length && user.time_windows[user.time_windows.length-1].shift_end
+            if user.status === 0
               button.round_circle.circle_in.update#in In
             else
               button.round_circle.circle_out.update#out Out
