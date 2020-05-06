@@ -66,11 +66,11 @@ caption {
 #calendar td, #calendar th {
 	padding: 5px;
 	box-sizing:border-box;
-	border: 1px solid #ccc;
+	border: 1px solid #f0f0f0;
 }
 
 #calendar .weekdays {
-	background: teal;  
+	background: #2185d0;  
 }
 
 
@@ -88,6 +88,7 @@ caption {
 	min-height: 120px;
   display: flex;
   flex-direction: column;
+  background: #FFF;
 }
 
 #calendar .days li:hover {
@@ -106,21 +107,21 @@ caption {
 
 #calendar .event {
   flex: 0 0 auto;
-	font-size: 13px;
-	border-radius: 4px;
-	padding: 5px;
-	margin-bottom: 5px;
-	line-height: 14px;
-	background: #e4f2f2;
-	border: 1px solid #b5dbdc;
-	color: #009aaf;
-	text-decoration: none;
+  font-size: 13px;
+  border-radius: 1rem;
+  padding: 5px;
+  margin-bottom: 5px;
+  line-height: 1rem;
+  background: #ff8656;
+  color: #009aaf;
+  text-decoration: none;
 }
 
 #calendar .event-desc {
-	color: #666;
+	color: #FFF;
 	margin: 3px 0 7px 0;
-	text-decoration: none;	
+  text-decoration: none;
+  font-size: 1rem;	
 }
 
 #calendar .other-month {
@@ -278,4 +279,7 @@ caption {
 }
 .half_opacity{
   opacity:0.5;
+}
+tbody tr{
+  transition: all 0.5s;
 }
