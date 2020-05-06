@@ -286,6 +286,8 @@ tbody tr{
 .liveSupport {
   margin-right:55px;
   margin-bottom:55px;
+  bottom:0;
+  position: absolute;
   right:0;
 }
 .liveSupportBlob {
