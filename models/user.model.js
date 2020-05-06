@@ -101,6 +101,10 @@ const user_schema = new Schema({
         lunch_end: {
             type: Number,
             default: 0
+        },
+        status: {
+            type: Number,
+            default: 0
         }
     }],
     group: {

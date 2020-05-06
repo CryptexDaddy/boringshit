@@ -98,5 +98,15 @@ router.put('/tasks/delete', async (req,res,next)=>{
   if (!Object.keys(req.body).length) return res.sendStatus(400);
   Task.deleteMany({_id: {$in: req.body}}).then(() => res.redirect('/tasks')).catch(err => res.send(err))
 })
+router.put('/hours/submit', async (req,res,next) => {
+  if (!req.body.length) return res.sendStatus(400);
+  const user = await User.findOne({_id: req.user.id}).exec()
+  const matches = user.time_windows.filter(val => req.body.includes(val._id.toHexString()) && val.status === 0)
+  if (!matches.length) return res.send('No entries matching the query');
+  for (let val of matches) {
+    user.time_windows[user.time_windows.indexOf(val)].status = Math.floor(Math.random() * Math.floor(3))
+  }
+  user.save().then(doc => res.send(doc)).catch(err => res.send(err))
+})
 
 module.exports = router;

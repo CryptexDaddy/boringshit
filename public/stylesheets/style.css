@@ -250,7 +250,6 @@ caption {
   display: block;
   padding: 0.25rem;
   font-size: 1.15rem;
-  opacity: 0.5;
 }
 #time_punch_date{
   text-align: center;
@@ -267,4 +266,16 @@ caption {
   width: 100px;
   height: 100px;
   margin: 0 auto;
+}
+.i_span{
+  margin-left: 6px;
+}
+.big_text{
+  font-size: 4rem;
+}
+.medium_text{
+  font-size: 2rem;
+}
+.half_opacity{
+  opacity:0.5;
 }
