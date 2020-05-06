@@ -42,37 +42,34 @@ block content
             | Delete Tasks
     form(action=`/user/tasks/create` method='POST')
         fieldset(class="create_wrapper")
-            table(class="create_container")
-            tr
-                td
-                label(for='title') Title: 
-                td
-                input(type='text' name='title')
-            tr
-                td
-                label(for='task-start') Task Start:
-                td
-                input(type='datetime-local' name='task-start' value=new Date().toISOString().slice(0,-8) min=new Date().toISOString().slice(0,-8) max=new Date(Date.now() + 1000000000).toISOString().slice(0,-8))
-            tr
-                td
-                label(for='status') Status: 
-                td
-                select(name="status")
-                    option(value="0") Not Yet Started
-                    option(value="1") In Progress
-                    option(value="2") Completed
-                    option(value="3") Inactive
-            tr
-                td
-                label(for='task-end') Task End:
-                td
-                input(type='datetime-local' name='task-end' value=new Date().toISOString().slice(0,-8) min=new Date().toISOString().slice(0,-8) max=new Date(Date.now() + 1000000000).toISOString().slice(0,-8))
-            br
-            button.ui.primary.button
-                | Add Task
+            .ui.form(style='float:right;')
+                .fields
+                    .field
+                        label Title
+                        input(type='text', placeholder='Title', name='title')
+                    .field
+                        label Task Start
+                        input(type='datetime-local' name='task-start' value=new Date().toISOString().slice(0,-8) min=new Date().toISOString().slice(0,-8) max=new Date(Date.now() + 1000000000).toISOString().slice(0,-8))
+                    .field
+                        label Status
+                        select.ui.dropdown.search(name='status')
+                            option(value="0") Not Yet Started
+                            option(value="1") In Progress
+                            option(value="2") Completed
+                            option(value="3") Inactive
+                    .field
+                        label Task End
+                        input(type='datetime-local' name='task-end' value=new Date().toISOString().slice(0,-8) min=new Date().toISOString().slice(0,-8) max=new Date(Date.now() + 1000000000).toISOString().slice(0,-8))
+
+           
+                button.ui.primary.button
+                    | Add Task
 
 block append js
   script.
+    $('select.dropdown')
+        .dropdown()
+    ;
     let changed_trs = []
     const inputs = document.getElementsByTagName('input');
     const selects = document.getElementsByTagName('select');
