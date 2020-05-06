@@ -5,7 +5,7 @@ const {Task} = require('../models/task.model')
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-    const users_doc = await User.find({status: 1}).exec();
+    const users_doc = req.user.company ? await User.find({'company': req.user.company._id}) : []
     const active_tasks = await Task.find({status: 1}).exec();
     res.render('dashboard', { title: 'Dashboard', active_users: users_doc, active_tasks });
 });

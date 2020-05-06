@@ -12,7 +12,7 @@ block content
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Employees In
-        .lText=active_users.length ? active_users.length + ` (${active_users.map(doc => doc.display_name).join(', ')})` : "0"
+        .lText=active_users.length ? active_users.length : "0"
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Appointments Today
@@ -27,34 +27,13 @@ block content
         .hText.mainColorlBlue
           | Who's Working
         .ui.relaxed.list
-          .item
-            img.ui.avatar.image(src='https://f0.pngfuel.com/png/312/283/man-face-clip-art-png-clip-art-thumbnail.png')
-            .content
-              a.header James Smith
-              .description
-                | Shipping 
-                a
-                  b Went for Lunch
-                |  just now.
-          .item
-            img.ui.avatar.image(src='https://f0.pngfuel.com/png/312/283/man-face-clip-art-png-clip-art-thumbnail.png')
-            .content
-              a.header Timothy Miller
-              .description
-                | Equipment & Materials 
-                a
-                  b Last Online
-                |  10 hours ago.
-          .item
-            img.ui.avatar.image(src='https://f0.pngfuel.com/png/312/283/man-face-clip-art-png-clip-art-thumbnail.png')
-            .content
-              a.header Sam Houston
-              .description
-                | Graphic Artist
-                a
-                  b Went for Lunch 
-                |  just now.
-
+          each member in active_users
+            .item
+              img.ui.avatar.image(src='https://f0.pngfuel.com/png/312/283/man-face-clip-art-png-clip-art-thumbnail.png')
+              .content
+                a.header=member.display_name
+                .description
+                  !=member.description
      
       
       .column(style="background:#ffffff;padding-bottom:10px;")
