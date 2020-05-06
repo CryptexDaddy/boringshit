@@ -37,8 +37,6 @@ html
                               img.tiny(src='https://fr.workxplore.com/images/icons/hexagon/darkblue/MI_DARK_BLUE_ICON_SUPPORT.png')
                           .content
                               a.author Support
-                              .metadata
-                                  span.date Today at 5:42PM
                               .text
                                   | Welcome to Live Support, How Can i help you today?
                       
@@ -53,10 +51,12 @@ html
 
     script.
       function alul() {
+
+        var today = `Today at ${new Date().getHours()}:${new Date().getMinutes()}`;
         var maindiv = document.getElementById('somerow');
         var inputVal = document.getElementById('reply').value;
         if (inputVal != '') {
-        maindiv.innerHTML += `<div class="comment"><a class="avatar"><img class="tiny" src="https://img.pngio.com/imagenes-random-png-5-png-image-random-png-451_326.png"></a><div class="content"><a class="author">You</a><div class="metadata"><span class="date">Now</span></div><div class="text">${inputVal}</div></div>`;
+        maindiv.innerHTML += `<div class="comment"><a class="avatar"><img class="tiny" src="https://img.pngio.com/imagenes-random-png-5-png-image-random-png-451_326.png"></a><div class="content"><a class="author">You</a><div class="metadata"><span class="date">${today}</span></div><div class="text">${inputVal}</div></div>`;
         }
       }
     block js

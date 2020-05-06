@@ -300,6 +300,6 @@ tbody tr{
 cursor:pointer;
 }
 #infinity {
-  
-  min-height:200px;
+overflow-y:scroll; scroll-behavior:smooth;max-height:200px;
+min-height:200px;
 }
