@@ -52,7 +52,7 @@ block content
                         input(type='datetime-local' name='task-start' value=new Date().toISOString().slice(0,-8) min=new Date().toISOString().slice(0,-8) max=new Date(Date.now() + 1000000000).toISOString().slice(0,-8))
                     .field
                         label Status
-                        select.ui.dropdown.search(name='status')
+                        select.ui.dropdown(name='status')
                             option(value="0") Not Yet Started
                             option(value="1") In Progress
                             option(value="2") Completed

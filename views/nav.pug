@@ -1,13 +1,13 @@
-.ui.secondary.pointing.menu.customColor
+.ui.secondary.pointing.menu.customColor.large
   a.item
     | Home
   .right.menu
     if authenticated
-        a.item(href="#")=(user.company ? user.company.name : "")
-        a.item(href="#")
-            | Notification
+      a.item(href="#")=(user.company ? user.company.name : "")
+      a.item(href="#")
+        i.icon.bell.outline
         a.ui.item(href="user/logout/")
-            | Logout
+          | Logout
         a.item.ui(href="#")=user.display_name
     else
         a.item(href="/user/signup") Sign Up
