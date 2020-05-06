@@ -21,7 +21,7 @@ block content
                         td
                             input(type='datetime-local' name='task-start' value=new Date(task.time_alloted.task_start).toISOString().slice(0,-8) min=new Date(task.time_alloted.task_start).toISOString().slice(0,-8) max=new Date(task.time_alloted.task_start + 1000000000).toISOString().slice(0,-8))
                         td
-                            select(name="status")
+                            select(name="status").dropdown
                                 option(value="0" selected=task.status===0) Not Yet Started
                                 option(value="1" selected=task.status===1) In Progress
                                 option(value="2" selected=task.status===2) Completed
@@ -41,8 +41,8 @@ block content
         button.ui.primary.button#delete
             | Delete Tasks
     form(action=`/user/tasks/create` method='POST')
-        fieldset(class="create_wrapper")
-            .ui.form(style='float:right;')
+        fieldset(class="create_wrapper", style='margin-top:15px; padding:unset;')
+            .ui.form
                 .fields
                     .field
                         label Title
