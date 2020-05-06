@@ -301,4 +301,10 @@ tbody tr{
 .white_bg{
   background:#FFF;
   padding: 0 2rem;
+.pointer {
+cursor:pointer;
+}
+#infinity {
+overflow-y:scroll; scroll-behavior:smooth;max-height:200px;
+min-height:200px;
 }
