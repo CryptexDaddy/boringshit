@@ -1,14 +1,24 @@
-.ui.secondary.pointing.menu.customColor.large
+.ui.secondary.menu.customColor.large
   a.item
     | Home
-  .right.menu
+    
+  .right
     if authenticated
       a.item(href="#")=(user.company ? user.company.name : "")
       a.item(href="#")
         i.icon.bell.outline
         a.ui.item(href="user/logout/")
           | Logout
-        a.item.ui(href="#")=user.display_name
+      a.ui.dropdown.item=user.display_name
+        i.dropdown.icon
+        .menu
+          .item(href='user/logout/') Logout
+            
+
+
+      
+
+        
     else
         a.item(href="/user/signup") Sign Up
         a.item(href="/user/Login") Login

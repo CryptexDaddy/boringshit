@@ -64,12 +64,14 @@ block content
            
                 button.ui.primary.button
                     | Add Task
-
+    
 block append js
   script.
     $('select.dropdown')
         .dropdown()
     ;
+    
+    
     let changed_trs = []
     const inputs = document.getElementsByTagName('input');
     const selects = document.getElementsByTagName('select');

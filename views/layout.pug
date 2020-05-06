@@ -23,14 +23,30 @@ html
       
     footer
       block footer
-      
-        .liveSupport
+        .footer
+          .ui.segment
+            .ui.grid
+              .sixteen.wide.column.fluid
+                .lineTxt
+                  ul.listMenu
+                    li
+                      a(href='#') Advertising
+                    li
+                      a(href='#') Business
+                    li
+                      a Privacy
+                    li
+                      a(href='#') Terms
+                    li
+                      a(href='#') Setting
+
+        .liveSupport.hidden.transition
           .ui.card
               .content
                   h3 Live Support Chat
               .image
                   img
-              .content#infinity
+              .content
                   .ui.comments#somerow(style='overflow-y:scroll; scroll-behavior:smooth;max-height:200px;')
                       .comment
                           a.avatar
@@ -43,13 +59,21 @@ html
 
               .extra.content
                 .ui.action.input.transparent.fluid
-                      input(type='text', placeholder='Add Reply...')#reply
+                      input(type='text', placeholder='Add Reply...', autocomplete='off')#reply
                       i.paper.plane.outline.icon.cBlue.circular.pointer(onclick='alul()')
-        button.circular.ui.icon.button.right.huge.liveSupportBlob
+        button.circular.ui.icon.button.right.huge.liveSupportBlob(onclick='showChat()')
           i.icon.comments
     
 
     script.
+      
+      function showChat() {
+        $('.liveSupport')
+        .transition({
+          animation : 'scale',
+          duration : '0.5s'
+        });
+      }
       function alul() {
 
         var today = `Today at ${new Date().getHours()}:${new Date().getMinutes()}`;
@@ -60,6 +84,10 @@ html
         }
       }
     block js
+      script.
+        $('.ui.dropdown.item')
+        .dropdown()
+        ;
       script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js')
       script(src='https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js')
       script(src='/javascripts/main.js')
