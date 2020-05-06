@@ -12,7 +12,7 @@ router.get('/', async function(req, res, next) {
     for (let x = 0; x < 42; x++) {
         const day_number = x > 0 ? moment(first_sunday.add(1, 'days')) : first_sunday;
         calendar[x] = {day: day_number.format('D'), 
-            tasks: await Task.find({$and: [{'time_alloted.task_end': {$gt: day_number.startOf('day').valueOf()}}, {'time_alloted.task_start': {$lt: day_number.endOf('day').valueOf()}}]}).exec()}
+            tasks: await Task.find({$and: [{'time_alloted.task_end': {$gt: day_number.startOf('day').valueOf()}}, {'time_alloted.task_start': {$lt: day_number.endOf('day').valueOf()}}, {status: 1}]}).exec()}
     }
     // const new_task = new Task({
     //     title: "Seks123",
