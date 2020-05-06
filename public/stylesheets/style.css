@@ -279,3 +279,14 @@ caption {
 .half_opacity{
   opacity:0.5;
 }
+.liveSupport {
+  margin-right:55px;
+  margin-bottom:55px;
+  right:0;
+}
+.liveSupportBlob {
+  position:absolute;
+  bottom:0;
+  margin-bottom:25px !important;
+  margin-right:25px !important;
+}
