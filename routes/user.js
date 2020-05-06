@@ -80,9 +80,8 @@ router.put('/tasks/update', async (req,res,next) => {
     task.title=entry.title
     task.time_alloted.task_start = Date.parse(entry.task_start)
     task.time_alloted.task_end = Date.parse(entry.task_end)
-    task.time_alloted.status = Number(entry.status)
+    task.status = Number(entry.status)
     task.save().then(doc => res.send(doc)).catch(err => res.send(err))
-    console.log(entry.status)
   }
 })
 router.post('/tasks/create', async (req,res,next)=>{

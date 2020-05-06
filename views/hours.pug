@@ -17,13 +17,14 @@ block content
                 td.day
                     if days_arr[val]
                         .total-time=msToTime(days_arr[val]%8.64e7)
-    strong(style="text-align: right")
-        p
-            span.medium_text.half_opacity Total hours this week: 
-            span.big_text=(Object.keys(days_arr).length ? msToTime(Object.values(days_arr).reduce((a, b) => a + b)%8.64e7) : "0")
-        p
-            span.medium_text.half_opacity Overtime hours this week: 
-            span.big_text=(Object.values(days_arr).filter(val => val > 8).length ? msToTime(Object.values(days_arr).filter(val => val > 8*3600000).map(val => val - 8*3600000).reduce((a, b) => a + b)%8.64e7) : "0")
+    section.white_bg
+        strong(style="text-align: right")
+            p
+                span.medium_text.half_opacity Total hours this week: 
+                span.big_text=(Object.keys(days_arr).length ? msToTime(Object.values(days_arr).reduce((a, b) => a + b)%8.64e7) : "0")
+            p
+                span.medium_text.half_opacity Overtime hours this week: 
+                span.big_text=(Object.values(days_arr).filter(val => val > 8).length ? msToTime(Object.values(days_arr).filter(val => val > 8*3600000).map(val => val - 8*3600000).reduce((a, b) => a + b)%8.64e7) : "0")
     
     
     .ui.modal.large#kek
@@ -49,50 +50,47 @@ block content
                     img.image(src='https://logofirmowe.pl/a/wp-content/uploads/2018/05/mcdonalds-definicja-logo-e1527206240422.png')
 
                 
-                
+    table.ui.celled.table
+        thead
+            tr
+            th Day
+            th In
+            th Out
+            th Lunch
+            th Total
+        tbody
+            each time_window in user.time_windows
+                - var start = new Date(time_window.shift_start)
+                - var end = time_window.shift_end>0 ? new Date(time_window.shift_end) : new Date()  
+                - var lunch_start = new Date(time_window.lunch_start)
+                - var lunch_end = new Date(time_window.lunch_end)
+                mixin tds
+                    td=`${start.getHours()}:${start.getMinutes().toString().length === 1 ? "0" + start.getMinutes() : start.getMinutes()}`
+                    td=`${end.getHours()}:${end.getMinutes().toString().length === 1 ? "0" + end.getMinutes() : end.getMinutes()}`
+                    td=lunch_start>0 && lunch_end>0 ? `${lunch_start.getHours()}:${lunch_start.getMinutes().toString().length === 1 ? "0" + lunch_start.getMinutes() : lunch_start.getMinutes()} - ${lunch_end.getHours()}:${lunch_end.getMinutes().toString().length === 1 ? "0" + lunch_end.getMinutes() : lunch_end.getMinutes()}` : '---'
+                    td=msToTime((time_window.shift_end>0 ? time_window.shift_end : Date.now())-time_window.shift_start - ((!time_window.lunch_end && time_window.lunch_start ? time_window.shift_end ? time_window.shift_end : Date.now() : time_window.lunch_end) - time_window.lunch_start) % 8.64e7)
+                tr(id=time_window._id)
+                    if !time_window.status
+                        td
+                            .ui.form
+                                .inline.field
+                                    .ui.checkbox
+                                        input(type='checkbox', tabindex='0')
+                                        label=start.toLocaleDateString("en-US", {month: 'long', day: 'numeric'})
 
-    .tableMain
-        table.ui.celled.table
-            thead
-                tr
-                th Day
-                th In
-                th Out
-                th Lunch
-                th Total
-            tbody
-                each time_window in user.time_windows
-                    - var start = new Date(time_window.shift_start)
-                    - var end = time_window.shift_end>0 ? new Date(time_window.shift_end) : new Date()  
-                    - var lunch_start = new Date(time_window.lunch_start)
-                    - var lunch_end = new Date(time_window.lunch_end)
-                    mixin tds
-                        td=`${start.getHours()}:${start.getMinutes().toString().length === 1 ? "0" + start.getMinutes() : start.getMinutes()}`
-                        td=`${end.getHours()}:${end.getMinutes().toString().length === 1 ? "0" + end.getMinutes() : end.getMinutes()}`
-                        td=lunch_start>0 && lunch_end>0 ? `${lunch_start.getHours()}:${lunch_start.getMinutes().toString().length === 1 ? "0" + lunch_start.getMinutes() : lunch_start.getMinutes()} - ${lunch_end.getHours()}:${lunch_end.getMinutes().toString().length === 1 ? "0" + lunch_end.getMinutes() : lunch_end.getMinutes()}` : '---'
-                        td=msToTime((time_window.shift_end>0 ? time_window.shift_end : Date.now())-time_window.shift_start - ((!time_window.lunch_end && time_window.lunch_start ? time_window.shift_end ? time_window.shift_end : Date.now() : time_window.lunch_end) - time_window.lunch_start) % 8.64e7)
-                    tr(id=time_window._id)
-                        if !time_window.status
-                            td
-                                .ui.form
-                                    .inline.field
-                                        .ui.checkbox
-                                            input(type='checkbox', tabindex='0')
-                                            label=start.toLocaleDateString("en-US", {month: 'long', day: 'numeric'})
-
-                            +tds
-                        else if time_window.status === 1
-                            td.positive
-                                i.icon.check
-                                span.i_span=start.toLocaleDateString("en-US", {month: 'long', day: 'numeric'})
-                            +tds
-                        else
-                            td.negative
-                                i.icon.close
-                                span.i_span=start.toLocaleDateString("en-US", {month: 'long', day: 'numeric'})
-                            +tds
-        button.ui.primary.button#update
-            | Submit Hours For Approval
+                        +tds
+                    else if time_window.status === 1
+                        td.positive
+                            i.icon.check
+                            span.i_span=start.toLocaleDateString("en-US", {month: 'long', day: 'numeric'})
+                        +tds
+                    else
+                        td.negative
+                            i.icon.close
+                            span.i_span=start.toLocaleDateString("en-US", {month: 'long', day: 'numeric'})
+                        +tds
+    button.ui.primary.button#update
+        | Submit Hours For Approval
         
 block append js
     script.

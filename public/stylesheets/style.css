@@ -28,8 +28,12 @@ nav ul li {
 .right {
   position:absolute;
   right: 0;
-
-}.centerIcon {
+}
+.main_container
+{
+  margin-right:2rem;
+}
+.centerIcon {
   top:25%;
   position:absolute;
 }
@@ -240,10 +244,6 @@ caption {
 .whiteBg {
   background: #ffffff
 }
-.tableMain
-{
-  margin-right:25px;
-}
 .circles_text_block {
   vertical-align: middle;
 }
@@ -273,9 +273,11 @@ caption {
 }
 .big_text{
   font-size: 4rem;
+  line-height: 4.5rem;
 }
 .medium_text{
   font-size: 2rem;
+  line-height: 2.5rem;
 }
 .half_opacity{
   opacity:0.5;
@@ -295,4 +297,8 @@ tbody tr{
   bottom:0;
   margin-bottom:25px !important;
   margin-right:25px !important;
+}
+.white_bg{
+  background:#FFF;
+  padding: 0 2rem;
 }

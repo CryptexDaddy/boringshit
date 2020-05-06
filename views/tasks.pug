@@ -46,7 +46,7 @@ block content
                 .fields
                     .field
                         label Title
-                        input(type='text', placeholder='Title', name='title')
+                        input(type='text', placeholder='Title', name='title' required max=36 min=4)
                     .field
                         label Task Start
                         input(type='datetime-local' name='task-start' value=new Date().toISOString().slice(0,-8) min=new Date().toISOString().slice(0,-8) max=new Date(Date.now() + 1000000000).toISOString().slice(0,-8))
