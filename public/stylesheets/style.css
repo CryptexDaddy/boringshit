@@ -296,3 +296,10 @@ tbody tr{
   margin-bottom:25px !important;
   margin-right:25px !important;
 }
+.pointer {
+cursor:pointer;
+}
+#infinity {
+  
+  min-height:200px;
+}
