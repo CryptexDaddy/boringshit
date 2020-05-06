@@ -38,6 +38,7 @@ router.put('/shift', async (req, res, next) => {
         break;
       case 'out':
         found_user.time_windows[found_user.time_windows.length - 1].shift_end = Date.now()
+        if (found_user.time_windows[found_user.time_windows.length - 1].lunch_start && !found_user.time_windows[found_user.time_windows.length - 1].lunch_end) found_user.time_windows[found_user.time_windows.length - 1].lunch_end = Date.now()
         found_user.status = 0;
         break;
       case 'lunch':

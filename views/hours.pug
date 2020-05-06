@@ -16,14 +16,14 @@ block content
             each val in [1, 2, 3, 4, 5, 6, 7]
                 td.day
                     if days_arr[val]
-                        .total-time=days_arr[val].toFixed(2).replace('.', ':')
+                        .total-time=msToTime(days_arr[val]%8.64e7)
     strong(style="text-align: right")
         p
             span.medium_text.half_opacity Total hours this week: 
-            span.big_text=(Object.keys(days_arr).length ? Object.values(days_arr).reduce((a, b) => a + b).toFixed(2).replace('.', ':') : "0")
+            span.big_text=(Object.keys(days_arr).length ? msToTime(Object.values(days_arr).reduce((a, b) => a + b)%8.64e7) : "0")
         p
             span.medium_text.half_opacity Overtime hours this week: 
-            span.big_text=(Object.values(days_arr).filter(val => val > 8).length ? Object.values(days_arr).filter(val => val > 8).map(val => val - 8).reduce((a, b) => a + b).toFixed(2).replace('.', ':') : "0")
+            span.big_text=(Object.values(days_arr).filter(val => val > 8).length ? msToTime(Object.values(days_arr).filter(val => val > 8*3600000).map(val => val - 8*3600000).reduce((a, b) => a + b)%8.64e7) : "0")
     
     
     .ui.modal.large#kek
@@ -63,14 +63,14 @@ block content
             tbody
                 each time_window in user.time_windows
                     - var start = new Date(time_window.shift_start)
-                    - var end = new Date(time_window.shift_end)
+                    - var end = time_window.shift_end>0 ? new Date(time_window.shift_end) : new Date()  
                     - var lunch_start = new Date(time_window.lunch_start)
                     - var lunch_end = new Date(time_window.lunch_end)
                     mixin tds
                         td=`${start.getHours()}:${start.getMinutes().toString().length === 1 ? "0" + start.getMinutes() : start.getMinutes()}`
                         td=`${end.getHours()}:${end.getMinutes().toString().length === 1 ? "0" + end.getMinutes() : end.getMinutes()}`
-                        td=lunch_start && lunch_end ? `${lunch_start.getHours()}:${lunch_start.getMinutes().toString().length === 1 ? "0" + lunch_start.getMinutes() : lunch_start.getMinutes()} - ${lunch_end.getHours()}:${lunch_end.getMinutes().toString().length === 1 ? "0" + lunch_end.getMinutes() : lunch_end.getMinutes()}` : '---'
-                        td=((time_window.shift_end-time_window.shift_start - (time_window.lunch_end-time_window.lunch_start))/3600000).toFixed(2).replace('.', ':')
+                        td=lunch_start>0 && lunch_end>0 ? `${lunch_start.getHours()}:${lunch_start.getMinutes().toString().length === 1 ? "0" + lunch_start.getMinutes() : lunch_start.getMinutes()} - ${lunch_end.getHours()}:${lunch_end.getMinutes().toString().length === 1 ? "0" + lunch_end.getMinutes() : lunch_end.getMinutes()}` : '---'
+                        td=msToTime((time_window.shift_end>0 ? time_window.shift_end : Date.now())-time_window.shift_start - ((!time_window.lunch_end && time_window.lunch_start ? time_window.shift_end ? time_window.shift_end : Date.now() : time_window.lunch_end) - time_window.lunch_start) % 8.64e7)
                     tr(id=time_window._id)
                         if !time_window.status
                             td

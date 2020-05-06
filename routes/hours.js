@@ -12,12 +12,16 @@ router.get('/', async function(req, res, next) {
     for (let window of req.user.time_windows.filter(val => val.shift_start > moment().subtract('7', 'days').valueOf())) {
         const work_time = (!window.shift_end ? Date.now() : window.shift_end) - window.shift_start
         const lunch_time = (!window.lunch_end && window.lunch_start ? window.shift_end ? window.shift_end : Date.now() : window.lunch_end) - window.lunch_start
-        const total_time = (work_time - lunch_time)/3600000;
+        const total_time = work_time - lunch_time;
         if (days_arr[moment(window.shift_start).isoWeekday()]) days_arr[moment(window.shift_start).isoWeekday()]+=total_time
         else days_arr[moment(window.shift_start).isoWeekday()] = total_time
         // console.log(moment(window.shift_start - 518400000).format('dddd'));
     }
-    res.render('hours', { title: 'Hour Overview', days_arr, selected_week });
+    function msToTime(s) {
+        var pad = (n, z = 2) => ('00' + n).slice(-z);
+        return pad(s/3.6e6|0) + ':' + pad((s%3.6e6)/6e4 | 0) + ':' + pad((s%6e4)/1000|0);
+    }
+    res.render('hours', { title: 'Hour Overview', days_arr, selected_week, msToTime });
     console.log(Object.keys(days_arr).length)
 });
 
