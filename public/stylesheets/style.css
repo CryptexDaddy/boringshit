@@ -28,6 +28,7 @@ nav ul li {
 .right {
   position:absolute;
   right: 0;
+  display:inline-flex;
 }
 .main_container
 {
@@ -301,10 +302,32 @@ tbody tr{
 .white_bg{
   background:#FFF;
   padding: 0 2rem;
+}
 .pointer {
 cursor:pointer;
 }
 #infinity {
 overflow-y:scroll; scroll-behavior:smooth;max-height:200px;
 min-height:200px;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+
+}
+.listMenu {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  display:inline;
+}
+.listMenu li {
+  display:inline;
+  padding:16px;
 }
