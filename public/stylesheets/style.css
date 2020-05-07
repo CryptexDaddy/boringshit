@@ -90,7 +90,7 @@ caption {
 }
 
 #calendar td {
-	min-height: 120px;
+	min-height: 100px;
   display: flex;
   flex-direction: column;
   background: #FFF;
@@ -311,10 +311,11 @@ overflow-y:scroll; scroll-behavior:smooth;max-height:200px;
 min-height:200px;
 }
 .footer {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
-  width: 100%;
+  width:100%;
+  margin-top:25px;
   background-color: red;
   color: white;
   text-align: center;

@@ -59,14 +59,21 @@ html
 
               .extra.content
                 .ui.action.input.transparent.fluid
-                      input(type='text', placeholder='Add Reply...', autocomplete='off')#reply
-                      i.paper.plane.outline.icon.cBlue.circular.pointer(onclick='alul()')
+                      input(type='text', placeholder='Add Reply...', autocomplete='off', onkeypress='return onEnterP(event)')#reply
+                      i.paper.plane.outline.icon.cBlue.circular.pointer#xde(onclick='alul()')
         button.circular.ui.icon.button.right.huge.liveSupportBlob(onclick='showChat()')
           i.icon.comments
     
 
     script.
-      
+      function onEnterP(event) {
+        if (event.keyCode == 13) {
+          alul();
+        }
+      } 
+      $('.ui.dropdown.item')
+        .dropdown()
+        ;
       function showChat() {
         $('.liveSupport')
         .transition({
@@ -84,10 +91,7 @@ html
         }
       }
     block js
-      script.
-        $('.ui.dropdown.item')
-        .dropdown()
-        ;
+    
       script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js')
       script(src='https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js')
       script(src='/javascripts/main.js')
