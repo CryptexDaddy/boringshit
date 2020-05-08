@@ -29,28 +29,32 @@ block content
     
     
     .ui.modal.large#kek
-        i.close.icon
-        .ui.two.column.grid.row.whiteBg
-            .column
-                .formShit
-                    .centeredThings
-                        form.ui.form
-
-                            .field.eight.wide
-                                
-                                input(type='text', name='first-name', placeholder='First Name')
-                            .field.eight.wide
-                                
-                                input(type='text', name='last-name', placeholder='Last Name')
-                            .field
-                                .ui.checkbox
-                                    input.hidden(type='checkbox', tabindex='0')
-                                    label Stay signed in
-                            button.ui.button(type='submit', style='float:right;') Submit
-
-            .column.cBlueBg
-                .image.content
-                    img.image(src='https://logofirmowe.pl/a/wp-content/uploads/2018/05/mcdonalds-definicja-logo-e1527206240422.png')
+        #container.container
+            .form-container.sign-up-container
+                form(action='#')
+            
+                    span or use your email for registration
+                    input(type='text', placeholder='Name')
+                    input(type='email', placeholder='Email')
+                    input(type='password', placeholder='Password')
+                    button Sign Up
+            .form-container.sign-in-container
+                form(action='#')
+                    h1 Sign In
+                    
+                    input(type='email', placeholder='Email')
+                    input(type='password', placeholder='Password')
+                    button Sign In
+            .overlay-container
+                .overlay
+                    .overlay-panel.overlay-left
+                        h1 Welcome Back
+                        p To keep connected with us please login with your personal info
+                        button#signIn.ghost Sign In
+                    .overlay-panel.overlay-right
+                        h1 Hello,Friend
+                        p Enter your personal details and start journey with us
+                        button#signUp.ghost Sign Up
 
                 
     table.ui.celled.table

@@ -215,12 +215,14 @@ caption {
 }
 .circle_lunch {
   background:orange;
+
 }
 .circle_in {
   background:red;
 }
 .circle_out {
-  background:green;
+  background:green !important;
+
 }
 .borderThing {
   border-right: 1px solid;
@@ -383,7 +385,7 @@ min-height:200px;
 
 
 
-button {
+.buttonxD {
     border-radius: 20px;
     border: 1px solid #ff4b2b;
     background: #ff4b2b;
@@ -398,15 +400,15 @@ button {
 
 
 
-button:active {
+.buttonxD:active {
     transform: scale(0.95);
 }
 
-button:focus {
+.buttonxD:focus {
     outline: none;
 }
 
-button.ghost {
+.buttonxD.ghost {
     background: transparent;
     border-color: #ff4b2b;
     background-color: #ff4b2b
@@ -537,3 +539,4 @@ a {
 	text-decoration: none;
 	margin: 15px 0;
 }
+
