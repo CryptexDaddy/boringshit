@@ -2,6 +2,7 @@ extends layout
 
 block content
     h1= title
+    span.ui.large.header.spanClr(style="float:right;opacity:0.5;") Here is an overview of your work this week...
     table(id="calendar")
         caption=selected_week
         tr(class="weekdays")
@@ -32,18 +33,20 @@ block content
         .ui.two.column.grid.row.whiteBg
             .column
                 .formShit
-                    form.ui.form
-                        .field.eight.wide
-                            
-                            input(type='text', name='first-name', placeholder='First Name')
-                        .field.eight.wide
-                            
-                            input(type='text', name='last-name', placeholder='Last Name')
-                        .field
-                            .ui.checkbox
-                                input.hidden(type='checkbox', tabindex='0')
-                                label Stay signed in
-                        button.ui.button(type='submit', style='float:right;') Submit
+                    .centeredThings
+                        form.ui.form
+
+                            .field.eight.wide
+                                
+                                input(type='text', name='first-name', placeholder='First Name')
+                            .field.eight.wide
+                                
+                                input(type='text', name='last-name', placeholder='Last Name')
+                            .field
+                                .ui.checkbox
+                                    input.hidden(type='checkbox', tabindex='0')
+                                    label Stay signed in
+                            button.ui.button(type='submit', style='float:right;') Submit
 
             .column.cBlueBg
                 .image.content
