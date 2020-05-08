@@ -39,6 +39,7 @@ const calendarRouter = require('./routes/calendar')
 const supportRouter = require('./routes/support')
 const tasksRouter = require('./routes/tasks')
 const teamRouter = require('./routes/team')
+const {isLoggedIn} = require('./middleware/authorize')
 
 var app = express();
 
@@ -89,6 +90,7 @@ app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(is_authorized_bool);
 app.use(flash());
+app.use('*', isLoggedIn);
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);

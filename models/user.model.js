@@ -108,7 +108,7 @@ const user_schema = new Schema({
         }
     }],
     group: {
-        type: String,
+        type: Number,
         required: true,
         default: 0
     },

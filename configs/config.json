@@ -1,6 +1,6 @@
 {
     "_comment1": "// Telegram IDs able to access the Dashboard //",
-    "allowed_ids": ["53473245"],
+    "allowed_groups": [1],
     "_comment2": "// Cookie area //",
     "session_secret": "1234",
     "cookie_key": "cas_session_id",
