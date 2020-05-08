@@ -14,3 +14,41 @@ block content
         .inline-buttons
             input(type='reset' value='Reset')
             input(type='submit' value='Submit')
+    #container.container
+        .form-container.sign-up-container
+            form(action='#')
+        
+                span or use your email for registration
+                input(type='text', placeholder='Name')
+                input(type='email', placeholder='Email')
+                input(type='password', placeholder='Password')
+                button Sign Up
+        .form-container.sign-in-container
+            form(action='#')
+                h1 Sign In
+                
+                input(type='email', placeholder='Email')
+                input(type='password', placeholder='Password')
+                button Sign In
+        .overlay-container
+            .overlay
+                .overlay-panel.overlay-left
+                    h1 Welcome Back
+                    p To keep connected with us please login with your personal info
+                    button#signIn.ghost Sign In
+                .overlay-panel.overlay-right
+                    h1 Hello,Friend
+                    p Enter your personal details and start journey with us
+                    button#signUp.ghost Sign Up
+    script.
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
