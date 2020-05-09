@@ -4,6 +4,7 @@ const {User} = require('../models/user.model');
 const {Task} = require('../models/task.model');
 const passport = require('passport');
 const argon2 = require('argon2');
+const {isAuthorized} = require('../middleware/authorize')
 
 /* GET users listing. */
 router.get('/', async (req, res, next) => {
@@ -20,7 +21,7 @@ router.get('/login', (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   req.logout();
-  res.redirect('/');
+  res.redirect('/user/login');
 })
 
 router.put('/shift', async (req, res, next) => {
@@ -70,9 +71,9 @@ router.post('/signup', async (req, res) => {
   .catch(err => res.status(400).send(err))
 })
 
-router.post('/login', passport.authenticate('local', {session: true, successRedirect: '/dashboard', failureFlash: true, failureRedirect: '/user/login'}));
+router.post('/login', passport.authenticate('local', {session: true, successRedirect: '/dashboard', successFlash: 'Welcome back!', failureFlash: true, failureRedirect: '/user/login'}));
 
-router.put('/tasks/update', async (req,res,next) => {
+router.put('/tasks/update', isAuthorized, async (req,res,next) => {
   if (!req.body.length) return res.sendStatus(400);
   for (let entry of req.body) {
     const task = await Task.findOne({_id: entry.id}).exec()
@@ -84,7 +85,7 @@ router.put('/tasks/update', async (req,res,next) => {
     task.save().then(doc => res.send(doc)).catch(err => res.send(err))
   }
 })
-router.post('/tasks/create', async (req,res,next)=>{
+router.post('/tasks/create', isAuthorized, async (req,res,next)=>{
   if (!Object.keys(req.body).length) return res.sendStatus(400);
   const new_task = new Task({
     title: req.body.title,
@@ -94,7 +95,7 @@ router.post('/tasks/create', async (req,res,next)=>{
   })
   new_task.save().then(() => res.redirect('/tasks')).catch(err => res.send(err))
 })
-router.put('/tasks/delete', async (req,res,next)=>{
+router.put('/tasks/delete', isAuthorized, async (req,res,next)=>{
   if (!Object.keys(req.body).length) return res.sendStatus(400);
   Task.deleteMany({_id: {$in: req.body}}).then(() => res.redirect('/tasks')).catch(err => res.send(err))
 })

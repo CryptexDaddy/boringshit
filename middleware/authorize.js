@@ -1,7 +1,10 @@
 const { allowed_groups } = require('../configs/config');
 const mongo_sanitize = require('mongo-sanitize');
-function isLoggedIn(req, res, next) {
+const {User} = require('../models/user.model')
+async function isLoggedIn(req, res, next) {
     if (req.isAuthenticated() || ['/user/login', '/user/signup'].includes(req.originalUrl)) {
+        req.app.locals.user = await User.findOne({_id:req.user._id}).populate('company').exec()
+        req.app.locals.authenticated = req.isAuthenticated()
         return next();
     } else {
         req.flash('error', `You must be logged in to access the ${req.originalUrl} page.`)
@@ -13,7 +16,7 @@ function isAuthorized(req, res, next) {
     if (req.isAuthenticated() && allowed_groups.includes(req.user.group)) {
         return next();
     } else {
-        return res.redirect('/');
+        return next(createError(403));
     }
 }
 

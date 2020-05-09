@@ -17,18 +17,22 @@ nav ul li {
   display: inline-block;
   margin-right: 1rem;
 }
-
-.error{
-  background: tomato;
+.flash{
   color: #FFF;
   padding: 1rem;
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  display: none;
   text-align: center;
 }
+.success{
+  background: lightgreen;
+}
+.error{
+  background: tomato;
+}
+
 .right {
   position:absolute;
   right: 0;

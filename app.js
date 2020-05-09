@@ -39,7 +39,7 @@ const calendarRouter = require('./routes/calendar')
 const supportRouter = require('./routes/support')
 const tasksRouter = require('./routes/tasks')
 const teamRouter = require('./routes/team')
-const {isLoggedIn} = require('./middleware/authorize')
+const {isLoggedIn, isAuthorized_bool} = require('./middleware/authorize')
 
 var app = express();
 
@@ -88,7 +88,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(is_authorized_bool);
+app.use(isAuthorized_bool);
 app.use(flash());
 app.use('*', isLoggedIn);
 
@@ -117,12 +117,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-async function is_authorized_bool(req, res, next) {
-  if (req.isAuthenticated()) {
-    req.app.locals.user = await User.findOne({_id:req.user._id}).populate('company').exec()
-  }
-  req.app.locals.authenticated = req.isAuthenticated()
-  console.log(req.isAuthenticated());
-  return next();
-}

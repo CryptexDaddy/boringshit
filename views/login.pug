@@ -2,7 +2,7 @@ extends layout
 
 block content
     if message && message.length
-        .error=message
+        .error.flash=message
     form.normform(action='/user/login', method='POST')
         fieldset
             legend Login

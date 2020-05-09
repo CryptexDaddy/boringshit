@@ -1,6 +1,5 @@
-const err_flash = $('.error');
+const err_flash = $('.flash');
 if (err_flash) {
-    $('.error').transition('fade down')
     function expire(){err_flash.transition('fade down')}
     setTimeout(expire, 3000)
 }
