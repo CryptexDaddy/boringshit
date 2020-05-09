@@ -219,12 +219,14 @@ caption {
 }
 .circle_lunch {
   background:orange;
+
 }
 .circle_in {
   background:red;
 }
 .circle_out {
-  background:green;
+  background:green !important;
+
 }
 .borderThing {
   border-right: 1px solid;
@@ -347,7 +349,7 @@ min-height:200px;
 }
 
 
-.container {
+.containerxD {
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     position: absolute;
@@ -387,7 +389,7 @@ min-height:200px;
 
 
 
-button {
+.buttonxD {
     border-radius: 20px;
     border: 1px solid #ff4b2b;
     background: #ff4b2b;
@@ -402,15 +404,15 @@ button {
 
 
 
-button:active {
+.buttonxD:active {
     transform: scale(0.95);
 }
 
-button:focus {
+.buttonxD:focus {
     outline: none;
 }
 
-button.ghost {
+.buttonxD.ghost {
     background: transparent;
     border-color: #ff4b2b;
     background-color: #ff4b2b
@@ -486,58 +488,32 @@ button.ghost {
 /*....Animation....*/
 
 /*....Move signin to the right....*/
-.container.right-panel-active .sign-in-container {
+.containerxD.right-panel-active .sign-in-container {
     transform: translateX(100%);
 }
 
 /*....Move overlay to the left....*/
-.container.right-panel-active .overlay-container {
+.containerxD.right-panel-active .overlay-container {
     transform: translateX(-100%);
 }
 
 /*....Bring sign up over sign in....*/
-.container.right-panel-active .sign-up-container {
+.containerxD.right-panel-active .sign-up-container {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
 }
 
 /*...Move overlay back to right....*/
-.container.right-panel-active .overlay {
+.containerxD.right-panel-active .overlay {
     transform: translateX(50%);
 }
 
-.container.right-panel-active .overlay-left {
+.containerxD.right-panel-active .overlay-left {
     transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-right {
+.containerxD.right-panel-active .overlay-right {
     transform: translateX(20%);
 }
-h1 {
-	font-weight: bold;
-	margin: 0;
-}
 
-h2 {
-	text-align: center;
-}
-
-p {
-	font-size: 14px;
-	font-weight: 100;
-	line-height: 20px;
-	letter-spacing: 0.5px;
-	margin: 20px 0 30px;
-}
-
-span {
-	font-size: 12px;
-}
-
-a {
-	color: #333;
-	font-size: 14px;
-	text-decoration: none;
-	margin: 15px 0;
-}
