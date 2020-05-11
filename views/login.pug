@@ -1,35 +1,27 @@
 extends layout
 
 block content
-    if message && message.length
-        .error.flash=message
-    form.normform(action='/user/login', method='POST')
-        fieldset
-            legend Login
-            label(for='email') Email:
-            input#email(type='email' name='email' placeholder='your email' required)
-            label(for='password') Password:
-            input#password(type='password' name='password' placeholder='your password' required)
-        br
-        .inline-buttons
-            input(type='reset' value='Reset')
-            input(type='submit' value='Submit')
+    
+   
     #container.containerxD
         .form-container.sign-up-container
-            form(action='#')
-        
-                span or use your email for registration
-                input(type='text', placeholder='Name')
-                input(type='email', placeholder='Email')
-                input(type='password', placeholder='Password')
-                button.buttonxD Sign Up
+            form(action='/user/signup', method='POST')
+                h1 Sign Up
+                .ui.input.formMargin
+                    input(type='text', placeholder='Name')
+                .ui.input.formMargin
+                    input(type='email', placeholder='Email', name='email', required)#email
+                .ui.input.formMargin
+                    input(type='password', placeholder='Password', name='password', required)#password
+                button.buttonxD(type='submit') Sign Up
         .form-container.sign-in-container
-            form(action='#')
+            form(action='/user/login', method='POST')
                 h1 Sign In
-                
-                input(type='email', placeholder='Email')
-                input(type='password', placeholder='Password')
-                button.buttonxD Sign In
+                .ui.input.formMargin
+                    input(type='email', placeholder='Email', name='email', required)#email
+                .ui.input.formMargin
+                    input(type='password', placeholder='Password', name='password', required)#password
+                button.buttonxD(type='submit') Sign In
         .overlay-container
             .overlay
                 .overlay-panel.overlay-left
@@ -37,18 +29,11 @@ block content
                     p To keep connected with us please login with your personal info
                     button.buttonxD#signIn.ghost Sign In
                 .overlay-panel.overlay-right
-                    h1 Hello,Friend
-                    p Enter your personal details and start journey with us
+                    h1 Hi There!
+                    p Register and start to save money at ease!
                     button.buttonxD#signUp.ghost Sign Up
-    script.
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
+            .ui.error.message
+                .header Forbidden
+                if message && message.length
+                    p=message
 
-        signUpButton.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
-        });
-
-        signInButton.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });

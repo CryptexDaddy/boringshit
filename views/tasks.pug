@@ -70,11 +70,7 @@ block content
 block append js
     if authorized
         script.
-            $('select.dropdown')
-                .dropdown()
-            ;
-
-
+        
             let changed_trs = []
             const inputs = document.getElementsByTagName('input');
             const selects = document.getElementsByTagName('select');

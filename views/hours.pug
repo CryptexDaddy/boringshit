@@ -28,34 +28,6 @@ block content
                 span.big_text=(Object.values(days_arr).filter(val => val > 8).length ? msToTime(Object.values(days_arr).filter(val => val > 8*3600000).map(val => val - 8*3600000).reduce((a, b) => a + b)%8.64e7) : "0")
     
     
-    .ui.modal.large#kek
-        #container.container
-            .form-container.sign-up-container
-                form(action='#')
-            
-                    span or use your email for registration
-                    input(type='text', placeholder='Name')
-                    input(type='email', placeholder='Email')
-                    input(type='password', placeholder='Password')
-                    button Sign Up
-            .form-container.sign-in-container
-                form(action='#')
-                    h1 Sign In
-                    
-                    input(type='email', placeholder='Email')
-                    input(type='password', placeholder='Password')
-                    button Sign In
-            .overlay-container
-                .overlay
-                    .overlay-panel.overlay-left
-                        h1 Welcome Back
-                        p To keep connected with us please login with your personal info
-                        button#signIn.ghost Sign In
-                    .overlay-panel.overlay-right
-                        h1 Hello,Friend
-                        p Enter your personal details and start journey with us
-                        button#signUp.ghost Sign Up
-
                 
     table.ui.celled.table
         thead
@@ -101,13 +73,6 @@ block content
         
 block append js
     script.
-        function kek() {
-            $('#kek')
-            .modal({
-                centered: false
-            })
-            .modal('show')
-            ; }
         const upd = document.getElementById('update');
         upd.addEventListener('click', function () {
             const checked = document.querySelectorAll('input[type="checkbox"]:checked')

@@ -357,6 +357,8 @@ min-height:200px;
     width: 768px;
     max-width: 100%;
     min-height: 480px;
+    margin-top:50px;
+    left:25%;
     opacity: 0.8;
 }
 
@@ -517,3 +519,6 @@ min-height:200px;
     transform: translateX(20%);
 }
 
+.formMargin {
+  margin-bottom:15px;
+}
