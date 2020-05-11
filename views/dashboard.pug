@@ -53,10 +53,6 @@ block content
             span!=user.time_windows.length && user.time_windows[user.time_windows.length-1].shift_start ? "<b>IN</b> " + new Date(user.time_windows[user.time_windows.length-1].shift_start).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }) : "<b>---</b>"
             span!=user.time_windows.length && user.time_windows[user.time_windows.length-1].shift_end ? "<b>OUT</b> " + new Date(user.time_windows[user.time_windows.length-1].shift_end).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }) : "<b>---</b>"
 
-
-
-        
-
 block append js
   script.
     const update = document.getElementsByClassName('update');

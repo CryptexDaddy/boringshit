@@ -1,7 +1,6 @@
 .ui.secondary.menu.customColor.large
   a.item
     | Home
-    
   .right
     if authenticated
       a.item(href="#")=(user.company ? user.company.name : "")
@@ -11,13 +10,6 @@
         i.dropdown.icon
         .menu
           a.item(href='user/logout') Logout
-            
-            
-
-
-      
-
-        
     else
         a.item(href="/user/signup") Sign Up
         a.item(href="/user/Login") Login
