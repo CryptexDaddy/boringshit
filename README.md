@@ -3,15 +3,15 @@
 
 ## Requirments
 ```bash
-Node \n
+Node
 MongoDB
 ```
 ## Installation
-```bash
+```sh
 npm i
 ```
 ## Run
-```bash
+```sh
 npm start
 ```
 
