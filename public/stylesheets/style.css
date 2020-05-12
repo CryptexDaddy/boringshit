@@ -537,3 +537,6 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child {
   opacity: 0.5;
   margin-top:0;
 }
+.no_left_margin{
+  margin-left:0!important;
+}

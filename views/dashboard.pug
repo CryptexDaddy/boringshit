@@ -5,7 +5,7 @@ block content
       .success.flash=message
   h1= title
   h2.page-desc=page_description
-  .ui.column.grid
+  .ui.column.grid.no_left_margin
     .row
       .three.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
@@ -24,7 +24,7 @@ block content
         .hText.mainColorlBlue
           | Total Expenses
         .lText="$" + user.total_time
-  .ui.grid
+  .ui.grid.no_left_margin
     .three.column.row
       .column(style="background:#ffffff;margin-right: 50px; padding-bottom:10px;")
         .hText.mainColorlBlue
