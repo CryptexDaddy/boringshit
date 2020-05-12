@@ -6,7 +6,7 @@ html
       link(rel='stylesheet', href='/stylesheets/style.css')
       link(rel='stylesheet', href='/stylesheets/normform.min.css')
       link(rel='stylesheet', type='text/css', href='https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.css')
-  body(onload='kek()')
+  body
     header
       nav
         include nav.pug
@@ -63,33 +63,7 @@ html
                       i.paper.plane.outline.icon.cBlue.circular.pointer#xde(onclick='alul()')
         button.circular.ui.icon.button.right.huge.liveSupportBlob(onclick='showChat()')
           i.icon.comments
-    
-
-    script.
-      function onEnterP(event) {
-        if (event.keyCode == 13) {
-          alul();
-        }
-      } 
-      $('.ui.dropdown.item').dropdown();
-      function showChat() {
-        $('.liveSupport')
-        .transition({
-          animation : 'scale',
-          duration : '0.5s'
-        });
-      }
-      function alul() {
-
-        var today = `Today at ${new Date().getHours()}:${new Date().getMinutes()}`;
-        var maindiv = document.getElementById('somerow');
-        var inputVal = document.getElementById('reply').value;
-        if (inputVal != '') {
-        maindiv.innerHTML += `<div class="comment"><a class="avatar"><img class="tiny" src="https://img.pngio.com/imagenes-random-png-5-png-image-random-png-451_326.png"></a><div class="content"><a class="author">You</a><div class="metadata"><span class="date">${today}</span></div><div class="text">${inputVal}</div></div>`;
-        document.getElementById('reply').value = '';
-        }
-        
-      }
+  
     block js
     
       script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js')
