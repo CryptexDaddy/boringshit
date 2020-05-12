@@ -39,7 +39,7 @@ const calendarRouter = require('./routes/calendar')
 const supportRouter = require('./routes/support')
 const tasksRouter = require('./routes/tasks')
 const teamRouter = require('./routes/team');
-const extLogin = require('./routes/extLogin');
+
 const {isLoggedIn, isAuthorized_bool} = require('./middleware/authorize')
 
 var app = express();
@@ -101,7 +101,6 @@ app.use('/calendar', calendarRouter);
 app.use('/support', supportRouter);
 app.use('/tasks', tasksRouter);
 app.use('/team', teamRouter);
-app.use('/extlogin', extLogin);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

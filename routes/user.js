@@ -8,16 +8,16 @@ const argon2 = require('argon2');
 const {isAuthorized} = require('../middleware/authorize')
 
 /* GET users listing. */
-router.get('/', async (req, res, next) => {
-  res.render('/user', { title: 'Profile' });
-});
+// router.get('/', async (req, res, next) => {
+//   res.render('/user', { title: 'Profile' });
+// });
 
-router.get('/signup', (req, res, next) => {
-  res.render('signup', { title: 'Sign Up' });
-});
+// router.get('/signup', (req, res, next) => {
+//   res.render('signup', { title: 'Sign Up' });
+// });
 
 router.get('/login', (req, res, next) => {
-  res.render('login', { title: 'Login', failureFlash : true, message: req.flash('error') });
+  res.render('extLogin', { title: 'Login', failureFlash : true, message: req.flash('error') });
 })
 
 router.get('/logout', (req, res, next) => {
