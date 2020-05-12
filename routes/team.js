@@ -5,7 +5,7 @@ const {User} = require('../models/user.model');
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   const team_members = req.user.company ? await User.find({'company': req.user.company._id}) : []
-  res.render('team', { title: 'Team', team_members });
+  res.render('team', { title: 'Team', team_members, page_description: `Here is who is at the office today!` });
   
 });
 

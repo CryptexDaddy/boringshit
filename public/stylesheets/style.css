@@ -223,10 +223,15 @@ caption {
   border: none;
   margin-right: 1rem;
   cursor: pointer;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  font-weight: bold;#
 }
 .circle_lunch {
   background:orange;
-
+}
+.circle_lunch_out {
+  background:yellowgreen;
 }
 .circle_in {
   background:red;

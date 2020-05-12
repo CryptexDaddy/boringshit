@@ -22,7 +22,7 @@ router.get('/', async function(req, res, next) {
         }
     }
     const users_doc = await User.find({status: 1}).exec();
-    res.render('calendar', { title: 'Calendar', active_users: users_doc, calendar, events, selected_month });
+    res.render('calendar', { title: 'Calendar', active_users: users_doc, calendar, events, selected_month, page_description: `Here is what is going on this month!` });
 });
 
 module.exports = router;

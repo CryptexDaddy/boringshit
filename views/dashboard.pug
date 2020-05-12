@@ -47,7 +47,13 @@ block content
         span#time_punch_date(style="text-align:center;")=new Date().toLocaleDateString("en-US", {month: 'long', day: 'numeric'}).split(' ').map(val => val.slice(0,3)).join(' ')
         .circles_container
           .circles
-            button.round_circle.circle_lunch.update#lunch Lunch
+            if user.status === 2
+              button.round_circle.circle_lunch_out.update#lunch Lunch
+            else
+              if user.status === 0
+                button.round_circle.circle_lunch.update#lunch(style='opacity: 0.5; cursor: not-allowed' disabled) Lunch
+              else
+                button.round_circle.circle_lunch.update#lunch Lunch
             if user.status === 0
               button.round_circle.circle_in.update#in In
             else
