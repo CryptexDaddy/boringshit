@@ -551,7 +551,7 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child {
   position:fixed;
 }
 .ui.relaxed.grid{
-  height:100%;
+  height:95%;
 }
 .ui.compact.vertical.menu{
   height:100%;

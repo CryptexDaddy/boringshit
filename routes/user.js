@@ -9,7 +9,7 @@ const {isAuthorized} = require('../middleware/authorize')
 
 /* GET users listing. */
 router.get('/', async (req, res, next) => {
-  res.render('extLogin', { title: 'Profile' });
+  res.render('/user', { title: 'Profile' });
 });
 
 router.get('/signup', (req, res, next) => {
