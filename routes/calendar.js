@@ -14,13 +14,6 @@ router.get('/', async function(req, res, next) {
         calendar[x] = {day: day_number.format('D'), 
             tasks: await Task.find({$and: [{'time_alloted.task_end': {$gt: day_number.startOf('day').valueOf()}}, {'time_alloted.task_start': {$lt: day_number.endOf('day').valueOf()}}, {status: 1}]}).exec()}
     }
-    // const new_task = new Task({
-    //     title: "Seks123",
-    //     description: "We hav seks today on billiadrd taybl!!",
-    //     time_alloted: {task_start: Date.now(), task_end: Date.now() + 40000}
-    // })
-    // new_task.save()
-    console.log(Object.values(calendar).filter(val => val.tasks.length).forEach(val => console.log(val.tasks)))
     const users_doc = await User.find({status: 1}).exec();
     res.render('calendar', { title: 'Calendar', active_users: users_doc, calendar });
 });
