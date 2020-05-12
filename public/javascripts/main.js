@@ -44,3 +44,8 @@ signInButton.addEventListener('click', () => {
   $('select.dropdown')
   .dropdown()
 ;
+$('.ui.modal')
+  .modal({
+    centered: true
+  }).modal('show')
+;
