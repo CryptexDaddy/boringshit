@@ -33,11 +33,7 @@ nav ul li {
   background: tomato;
 }
 
-.right {
-  position:absolute;
-  right: 0;
-  display:inline-flex;
-}
+
 .main_container
 {
   margin-right:2rem;

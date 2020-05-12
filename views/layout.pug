@@ -23,23 +23,20 @@ html
       
     footer
       block footer
-        .footer
-          .ui.segment
-            .ui.grid
-              .sixteen.wide.column.fluid
-                .lineTxt
-                  ul.listMenu
-                    li
-                      a(href='#') Advertising
-                    li
-                      a(href='#') Business
-                    li
-                      a(href='#') Privacy
-                    li
-                      a(href='#') Terms
-                    li
-                      a(href='#') Setting
+        .ui.menu.bottom.fixed.borderless(style='justify-content:center')
+          a.item
+            | Advertising
+          a.item
+            | Business
+          a.item
+            | Privacy
+          a.item
+            | Terms
+          a.item
+            | Setting
+                
 
+      
         .liveSupport.hidden.transition
           .ui.card
               .content
@@ -61,7 +58,7 @@ html
                 .ui.action.input.transparent.fluid
                       input(type='text', placeholder='Add Reply...', autocomplete='off', onkeypress='return onEnterP(event)')#reply
                       i.paper.plane.outline.icon.cBlue.circular.pointer#xde(onclick='alul()')
-        button.circular.ui.icon.button.right.huge.liveSupportBlob(onclick='showChat()')
+        button.circular.ui.icon.button.right.huge.liveSupportBlob(onclick='showChat()', style='right:0;z-index:999;')
           i.icon.comments
   
     block js
