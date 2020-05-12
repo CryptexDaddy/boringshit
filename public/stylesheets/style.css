@@ -118,7 +118,7 @@ caption {
   align-self: flex-end;
 }
 
-#calendar .event {
+#calendar .event-container {
   flex: 0 0 auto;
   font-size: 13px;
   border-radius: 1rem;
@@ -129,7 +129,13 @@ caption {
   color: #009aaf;
   text-decoration: none;
 }
+#calendar .event {
+  background: lightgreen;
+}
 
+#calendar .task {
+  background: red;
+}
 #calendar .event-desc {
 	color: #FFF;
 	margin: 3px 0 7px 0;

@@ -8,7 +8,7 @@ const moment = require('moment');
 /* GET home page. */
 router.get('/', async function(req, res, next) {
     const days_arr = {};
-    const selected_week = moment((req.user.time_windows.length ? req.user.time_windows.slice(-1)[0].shift_start : Date.now()) - 518400000).format('MMMM d, YYYY') + ' - ' + moment(req.user.time_windows.length ? req.user.time_windows.slice(-1)[0].shift_start : Date.now()).format('MMMM d, YYYY')
+    const selected_week = moment().startOf('isoWeek').format('LL') + ' - ' + moment().endOf('week').format('LL')
     for (let window of req.user.time_windows.filter(val => val.shift_start > moment().startOf('week').valueOf())) {
         const work_time = (!window.shift_end ? Date.now() : window.shift_end) - window.shift_start
         const lunch_time = (!window.lunch_end && window.lunch_start ? window.shift_end ? window.shift_end : Date.now() : window.lunch_end) - window.lunch_start

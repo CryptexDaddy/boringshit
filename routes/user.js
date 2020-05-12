@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const {User} = require('../models/user.model');
 const {Task} = require('../models/task.model');
+const {Event} = require('../models/event.model');
 const passport = require('passport');
 const argon2 = require('argon2');
 const {isAuthorized} = require('../middleware/authorize')
@@ -75,6 +76,7 @@ router.post('/login', passport.authenticate('local', {session: true, successRedi
 
 router.put('/tasks/update', isAuthorized, async (req,res,next) => {
   if (!req.body.length) return res.sendStatus(400);
+  const promises = []
   for (let entry of req.body) {
     const task = await Task.findOne({_id: entry.id}).exec()
     if (!task) continue
@@ -82,8 +84,10 @@ router.put('/tasks/update', isAuthorized, async (req,res,next) => {
     task.time_alloted.task_start = Date.parse(entry.task_start)
     task.time_alloted.task_end = Date.parse(entry.task_end)
     task.status = Number(entry.status)
-    task.save().then(doc => res.send(doc)).catch(err => res.send(err))
+    promises.push(task.save())
+    // task.save().then(doc => res.send(doc)).catch(err => res.send(err))
   }
+  Promise.all(promises).then(doc => res.send(doc)).catch(err => res.send(err))
 })
 router.post('/tasks/create', isAuthorized, async (req,res,next)=>{
   if (!Object.keys(req.body).length) return res.sendStatus(400);
@@ -109,5 +113,31 @@ router.put('/hours/submit', async (req,res,next) => {
   }
   user.save().then(doc => res.send(doc)).catch(err => res.send(err))
 })
-
+router.put('/events/update', isAuthorized, async (req,res,next) => {
+  if (!req.body.length) return res.sendStatus(400);
+  const promises = []
+  for (let entry of req.body) {
+    const event = await Event.findOne({_id: entry.id}).exec()
+    if (!event) continue
+    event.title=entry.title
+    event.time_alloted.task_start = Date.parse(entry.task_start)
+    event.time_alloted.task_end = Date.parse(entry.task_end)
+    promises.push(event.save())
+    // event.save().then(doc => res.send(doc)).catch(err => res.send(err))
+  }
+  Promise.all(promises).then(doc => res.send(doc)).catch(err => res.send(err))
+})
+router.post('/events/create', isAuthorized, async (req,res,next)=>{
+  if (!Object.keys(req.body).length) return res.sendStatus(400);
+  const new_event = new Event({
+    title: req.body.title,
+    "time_alloted.task_start": Date.parse(req.body["task-start"]),
+    "time_alloted.task_end": Date.parse(req.body['task-end'])
+  })
+  new_event.save().then(() => res.redirect('/calendar')).catch(err => res.send(err))
+})
+router.put('/events/delete', isAuthorized, async (req,res,next)=>{
+  if (!Object.keys(req.body).length) return res.sendStatus(400);
+  Event.deleteMany({_id: {$in: req.body}}).then(() => res.redirect('/calendar')).catch(err => res.send(err))
+})
 module.exports = router;

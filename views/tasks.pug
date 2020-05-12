@@ -28,7 +28,7 @@ block content
                                 option(value="3" selected=task.status===3) Inactive
                         //- td=new Date(task.time_alloted.task_end).toString()
                         td
-                            input(type='datetime-local' name='task-end' value=new Date(task.time_alloted.task_start).toISOString().slice(0,-8) min=new Date(task.time_alloted.task_start).toISOString().slice(0,-8) max=new Date(task.time_alloted.task_start + 1000000000).toISOString().slice(0,-8) readonly=!authorized)
+                            input(type='datetime-local' name='task-end' value=new Date(task.time_alloted.task_end).toISOString().slice(0,-8) min=new Date(task.time_alloted.task_start).toISOString().slice(0,-8) max=new Date(task.time_alloted.task_start + 1000000000).toISOString().slice(0,-8) readonly=!authorized)
                         td=task.employees.map(emp => emp.display_name).join(', ')
                         td
                             .ui.form
