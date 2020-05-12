@@ -59,9 +59,9 @@ app.use(session({
 
 passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'},(username, password, done) => {
   User.findOne({email: username}).exec().then(async user_doc => {
-    if (!user_doc) return done(null, false, {message: 'User does not exist.'});
+    if (!user_doc) return done(null, false, {message: 'User does not exist'});
     const password_compare_result = await argon2.verify(user_doc.password, password);
-    if (!password_compare_result) return done(null, false, {message: "Password doesnt match"});
+    if (!password_compare_result) return done(null, false, {message: "User does not exist"});
     return done(null, user_doc, {message: "Successful login!"})
   })
   .catch(err => {return done(err)});

@@ -25,7 +25,7 @@ block content
                 span.big_text=(Object.keys(days_arr).length ? msToTime(Object.values(days_arr).reduce((a, b) => a + b)%8.64e7) : "0")
             p
                 span.medium_text.half_opacity Overtime hours this week: 
-                span.big_text=(Object.values(days_arr).filter(val => val > 8).length ? msToTime(Object.values(days_arr).filter(val => val > 8*3600000).map(val => val - 8*3600000).reduce((a, b) => a + b)%8.64e7) : "0")
+                span.big_text=(Object.values(days_arr).filter(val => val > 8*3600000).length ? msToTime(Object.values(days_arr).filter(val => val > 8*3600000).map(val => val - 8*3600000).reduce((a, b) => a + b)%8.64e7) : "0")
      
     table.ui.celled.table
         thead
