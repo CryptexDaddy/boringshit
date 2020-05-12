@@ -25,7 +25,7 @@ function onEnterP(event) {
     var maindiv = document.getElementById('somerow');
     var inputVal = document.getElementById('reply').value;
     if (inputVal != '') {
-    maindiv.innerHTML += `<div class="comment"><a class="avatar"><img class="tiny" src="https://img.pngio.com/imagenes-random-png-5-png-image-random-png-451_326.png"></a><div class="content"><a class="author">You</a><div class="metadata"><span class="date">${today}</span></div><div class="text">${inputVal}</div></div>`;
+    maindiv.innerHTML += `<div class="comment"><a class="avatar"><img class="tiny" src="../images/user.png"></a><div class="content"><a class="author">You</a><div class="metadata"><span class="date">${today}</span></div><div class="text">${inputVal}</div></div>`;
     document.getElementById('reply').value = '';
     }
     
