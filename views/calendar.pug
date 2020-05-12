@@ -4,7 +4,7 @@ block content
     h1= title
     h2.page-desc=page_description
     table(id="calendar")
-        caption=selected_week
+        caption=selected_month
         tr(class="weekdays")
             th(scope='col') Sunday
             th(scope='col') Monday
@@ -15,7 +15,7 @@ block content
             th(scope='col') Saturday
         tr(class="days")
             each day in calendar
-                td.day
+                td.day(class=day.extra===2 ? 'current_day' : day.extra===0 ? 'other_month' : undefined)
                     .date=day.day
                     if day.tasks
                         each task in day.tasks
@@ -84,7 +84,7 @@ block append js
                 elem.addEventListener('change', (event) => {
                     const closest_tr = elem.closest('tr');
                     if (changed_trs.includes(closest_tr)) return
-                    closest_tr.style.boxShadow = "inset 0em -0.2em 0 0px gold"
+                    closest_tr.style.boxShadow = "inset 0.5em 0em 0em 0px gold"
                     changed_trs.push(closest_tr)
                 })
             }

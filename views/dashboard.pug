@@ -7,29 +7,31 @@ block content
   h2.page-desc=page_description
   .ui.column.grid.no_left_margin
     .row
-      .three.wide.column.borderThing(style="background:#ffffff")
+      .four.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Hours worked
         -var total_time = [...user.time_windows.filter(val => val.shift_start && val.shift_end).map(val => Math.abs(val.shift_end - val.shift_start)/3600000), ...user.time_windows.filter(val => val.shift_start && !val.shift_end).map(val => Math.abs(Date.now() - val.shift_start)/3600000)]
         .lText=total_time.length ? total_time.reduce((a, b) => a + b).toFixed(2).replace('.', ':') : "0:00"
-      .three.wide.column.borderThing(style="background:#ffffff")
+      .four.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Employees In
         .lText=active_users.length ? active_users.length : "0"
-      .three.wide.column.borderThing(style="background:#ffffff")
+      .four.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
           | Appointments Today
         .lText=active_tasks.length
-      .three.wide.column.borderThing(style="background:#ffffff")
+      .four.wide.column.borderThing(style="background:#ffffff")
         .hText.mainColorlBlue
-          | Total Expenses
+          | Expense Total
         .lText="$" + user.total_time
-  .ui.grid.no_left_margin
-    .three.column.row
-      .column(style="background:#ffffff;margin-right: 50px; padding-bottom:10px;")
+  .ui.column.grid.no_left_margin
+    .two.column.row.dashboard_column_container
+      .column.dashboard_column(style="background:#ffffff; width:49%!important")
         .hText.mainColorlBlue
           | Who's Working
-        .ui.relaxed.list
+        .ui.big.relaxed.list
+          if !active_users.length
+            span#time_punch_date(style="text-align:center;") ---
           each member in active_users
             .item
               img.ui.avatar.image(src='https://f0.pngfuel.com/png/312/283/man-face-clip-art-png-clip-art-thumbnail.png')
@@ -39,7 +41,7 @@ block content
                   !=member.description
      
       
-      .column(style="background:#ffffff;padding-bottom:10px;")
+      .column.dashboard_column(style="background:#ffffff; width:49%!important")
         .hText.mainColorlBlue
           | Time Punch
         span#time_punch_date(style="text-align:center;")=new Date().toLocaleDateString("en-US", {month: 'long', day: 'numeric'}).split(' ').map(val => val.slice(0,3)).join(' ')

@@ -80,7 +80,7 @@ block append js
                 elem.addEventListener('change', (event) => {
                     const closest_tr = elem.closest('tr');
                     if (changed_trs.includes(closest_tr)) return
-                    closest_tr.style.boxShadow = "inset 0em -0.2em 0 0px gold"
+                    closest_tr.style.boxShadow = "inset 0.5em 0em 0em 0px gold"
                     changed_trs.push(closest_tr)
                 })
             }

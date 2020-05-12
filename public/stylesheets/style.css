@@ -37,6 +37,7 @@ nav ul li {
 .main_container
 {
   margin-right:2rem;
+  margin-bottom: 3rem;
 }
 .centerIcon {
   top:25%;
@@ -79,7 +80,8 @@ caption {
 }
 
 #calendar .weekdays {
-	background: #FFF;  
+  background: #FFF;
+  border-top: 3px solid #f4f4f4;
 }
 #calendar caption {
   background: #FFF;
@@ -100,7 +102,7 @@ caption {
 	min-height: 100px;
   display: flex;
   flex-direction: column;
-  background: #FFF;
+  background: #f4f4f4;
 }
 
 #calendar .days li:hover {
@@ -120,8 +122,8 @@ caption {
 #calendar .event-container {
   flex: 0 0 auto;
   font-size: 13px;
-  border-radius: 1rem;
-  padding: 5px;
+  border-radius: 1rem 1rem 1rem 0rem;
+  padding: 5px 10px;
   margin-bottom: 5px;
   line-height: 1rem;
   background: #ff8656;
@@ -129,11 +131,11 @@ caption {
   text-decoration: none;
 }
 #calendar .event {
-  background: lightgreen;
+  background: gold;
 }
 
 #calendar .task {
-  background: red;
+  background: darkorchid;
 }
 #calendar .event-desc {
 	color: #FFF;
@@ -539,4 +541,36 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child {
 }
 .no_left_margin{
   margin-left:0!important;
+}
+.liveSupport {
+  position:fixed;
+}
+.ui.relaxed.grid{
+  height:100%;
+}
+.ui.compact.vertical.menu{
+  height:100%;
+}
+.tableMain{
+  margin-top: 2rem;
+}
+.current_day{
+  border: 1px solid #2185d0!important;
+}
+.other_month{
+  background: #fafafa!important;
+}
+.dashboard_column{
+  background: #FFF;
+  padding-bottom:10px;
+}
+.dashboard_column_container{
+  justify-content: space-between!important;
+}
+.ui.big.list>.item{
+  border-bottom: 2px solid #e8e4e4;
+  padding-bottom: 0.5rem!important;
+}
+.hText{
+  text-transform: uppercase;
 }
