@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1= title
-    span.ui.large.header.spanClr(style="float:right;opacity:0.5;") Here is an overview of your work this week...
+    h2.page-desc=page_description
     table(id="calendar")
         caption=selected_week
         tr(class="weekdays")

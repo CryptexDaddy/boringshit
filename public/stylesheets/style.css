@@ -83,9 +83,12 @@ caption {
 }
 
 #calendar .weekdays {
-	background: #2185d0;  
+	background: #FFF;  
 }
-
+#calendar caption {
+  background: #FFF;
+  color:teal;  
+}
 
 #calendar .weekdays th {
 	text-align: center;
@@ -93,8 +96,8 @@ caption {
 	line-height: 20px;
 	border: none !important;
 	padding: 10px 6px;
-	color: #fff;
-	font-size: 13px;
+	color: royalblue;
+	font-size: 1.25rem;
 }
 
 #calendar td {
@@ -183,7 +186,7 @@ caption {
 #calendar .total-time{
   color: #666;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin: auto;
   text-decoration: none;
   text-align: center;
@@ -528,4 +531,13 @@ min-height:200px;
 
 .formMargin {
   margin-bottom:15px;
+}
+
+h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child {
+  margin-top: 1rem!important;
+}
+.page-desc{
+  text-align: right;
+  opacity: 0.5;
+  margin-top:0;
 }

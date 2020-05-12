@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next) {
         var pad = (n, z = 2) => ('00' + n).slice(-z);
         return pad(s/3.6e6|0) + ':' + pad((s%3.6e6)/6e4 | 0) + ':' + pad((s%6e4)/1000|0);
     }
-    res.render('hours', { title: 'Hour Overview', days_arr, selected_week, msToTime });
+    res.render('hours', { title: 'Hour Overview', page_description: 'Here is an overview of your work this week...', days_arr, selected_week, msToTime });
     console.log(Object.keys(days_arr).length)
 });
 

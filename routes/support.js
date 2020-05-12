@@ -6,14 +6,7 @@ const {Company} = require('../models/company.model');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-    // const new_comp = new Company({
-    //     name: 'Caveman Inc',
-    //     address: 'Ranczo Wypalanki 123',
-    //     phone: '8 800 5553535',
-    //     contact: 'support@timcock.com'
-    // })
-    // new_comp.save()
-    res.render('support', { title: 'Support' });
+    res.render('support', { title: 'Support', page_description: `Need help with something, ${req.user.display_name}?` });
 });
 
 module.exports = router;
