@@ -12,8 +12,9 @@ block content
                 th Status
                 th Task End
                 th Employee
-                th.collapsing Delete
-                th.collapsing Users In Task
+                if authorized
+                    th.collapsing Delete
+                th Enroll
             tbody
                 each task in tasks
                     tr(class="task" id=task._id)
@@ -32,16 +33,15 @@ block content
                         td
                             input(type='datetime-local' name='task-end' value=new Date(task.time_alloted.task_end).toISOString().slice(0,-8) min=new Date(task.time_alloted.task_start).toISOString().slice(0,-8) max=new Date(task.time_alloted.task_start + 1000000000).toISOString().slice(0,-8) readonly=!authorized)
                         td=task.employees.map(emp => emp.display_name).join(', ')
-                        td
-                            .ui.form
-                                .inline.field
-                                    .ui.checkbox
-                                        input(type='checkbox', tabindex='0' name='delete' disabled=!authorized)
-                                        label
-                        td
-                            select.ui.search.dropdown
-                                option(value='User Name')
-
+                        if authorized
+                            td.text_center
+                                .ui.form
+                                    .inline.field
+                                        .ui.checkbox
+                                            input(type='checkbox', tabindex='0' name='delete' disabled=!authorized)
+                                            label
+                        td.text_center
+                            button.compact.ui.button.enroll=(task.employees.find(val => val.equals(user._id)) ? '❌' : '✔️')
         if authorized
             button.ui.primary.button#update
                 | Edit Tasks
@@ -76,7 +76,6 @@ block content
 block append js
     if authorized
         script.
-        
             let changed_trs = []
             const inputs = document.getElementsByTagName('input');
             const selects = document.getElementsByTagName('select');
@@ -132,3 +131,22 @@ block append js
                     window.location.reload(true)
                 })
             })
+    else
+        script.
+            const enrolls = document.getElementsByClassName('enroll');
+            for (let enroll of enrolls) {
+                enroll.addEventListener('click', function () {
+                    const obj = {id: enroll.closest('tr').id}
+                    fetch(`/user/tasks/enroll`, {
+                        method: 'PUT',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(obj)
+                    })
+                    .then(res => {
+                        if (res.ok) return res.json()
+                    })
+                    .then(data => {
+                        window.location.reload(true)
+                    })
+                })
+            }

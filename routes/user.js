@@ -109,7 +109,16 @@ router.put('/tasks/delete', isAuthorized, async (req,res,next)=>{
   if (!Object.keys(req.body).length) return res.sendStatus(400);
   Task.deleteMany({_id: {$in: req.body}}).then(() => res.redirect('/tasks')).catch(err => res.send(err))
 })
-router.put('/tasks/presence', is)
+router.put('/tasks/enroll', async (req,res,next) => {
+  if (!req.body.id) return res.sendStatus(400);
+  const task = await Task.findOne({_id: req.body.id}).exec()
+  if (!task) return res.sendStatus(400);
+  if (task.employees.find(val => val.equals(req.user._id)))
+    task.employees = task.employees.filter(val => !val.equals(req.user._id));
+  else
+    task.employees.push(req.user._id);
+  task.save().then(doc => res.send(doc)).catch(err => res.sendStatus(400));
+})
 router.put('/hours/submit', async (req,res,next) => {
   if (!req.body.length) return res.sendStatus(400);
   const user = await User.findOne({_id: req.user.id}).exec()
