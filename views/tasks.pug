@@ -13,6 +13,7 @@ block content
                 th Task End
                 th Employee
                 th.collapsing Delete
+                th.collapsing Users In Task
             tbody
                 each task in tasks
                     tr(class="task" id=task._id)
@@ -37,6 +38,10 @@ block content
                                     .ui.checkbox
                                         input(type='checkbox', tabindex='0' name='delete' disabled=!authorized)
                                         label
+                        td
+                            select.ui.search.dropdown
+                                option(value='User Name')
+
         if authorized
             button.ui.primary.button#update
                 | Edit Tasks
