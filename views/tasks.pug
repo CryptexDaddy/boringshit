@@ -11,7 +11,7 @@ block content
                 th Task Start
                 th Status
                 th Task End
-                th Employee
+                th Employees
                 if authorized
                     th.collapsing Delete
                 th Enroll
@@ -32,7 +32,11 @@ block content
                         //- td=new Date(task.time_alloted.task_end).toString()
                         td
                             input(type='datetime-local' name='task-end' value=new Date(task.time_alloted.task_end).toISOString().slice(0,-8) min=new Date(task.time_alloted.task_start).toISOString().slice(0,-8) max=new Date(task.time_alloted.task_start + 1000000000).toISOString().slice(0,-8) readonly=!authorized)
-                        td=task.employees.map(emp => emp.display_name).join(', ')
+                        td
+                            select.ui.fluid.dropdown(name='employees' multiple='')
+                                option(value='') Employees
+                                each employee in task.employees
+                                    option(value=employee._id selected)=employee.display_name
                         if authorized
                             td.text_center
                                 .ui.form
@@ -100,6 +104,7 @@ block append js
                         task_start: tr.querySelector('input[name="task-start"]').value,
                         status: tr.querySelector('select[name="status"]').value,
                         task_end: tr.querySelector('input[name="task-end"]').value,
+                        employees: tr.querySelector('select[name="employees"]').value
                     }
                     obj_arr.push(obj)
                 }
@@ -131,22 +136,22 @@ block append js
                     window.location.reload(true)
                 })
             })
-    else
-        script.
-            const enrolls = document.getElementsByClassName('enroll');
-            for (let enroll of enrolls) {
-                enroll.addEventListener('click', function () {
-                    const obj = {id: enroll.closest('tr').id}
-                    fetch(`/user/tasks/enroll`, {
-                        method: 'PUT',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify(obj)
-                    })
-                    .then(res => {
-                        if (res.ok) return res.json()
-                    })
-                    .then(data => {
-                        window.location.reload(true)
-                    })
+    
+    script.
+        const enrolls = document.getElementsByClassName('enroll');
+        for (let enroll of enrolls) {
+            enroll.addEventListener('click', function () {
+                const obj = {id: enroll.closest('tr').id}
+                fetch(`/user/tasks/enroll`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(obj)
                 })
-            }
+                .then(res => {
+                    if (res.ok) return res.json()
+                })
+                .then(data => {
+                    window.location.reload(true)
+                })
+            })
+        }

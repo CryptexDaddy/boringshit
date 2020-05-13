@@ -90,6 +90,7 @@ router.put('/tasks/update', isAuthorized, async (req,res,next) => {
     task.time_alloted.task_start = Date.parse(entry.task_start)
     task.time_alloted.task_end = Date.parse(entry.task_end)
     task.status = Number(entry.status)
+    task.employees = entry.employees.length ? entry.employees.split(',') : []
     promises.push(task.save())
     // task.save().then(doc => res.send(doc)).catch(err => res.send(err))
   }
