@@ -13,7 +13,7 @@ block content
                 th Task End
                 th Employee
                 th.collapsing Delete
-                th.collapsing Users In Task
+                
             tbody
                 each task in tasks
                     tr(class="task" id=task._id)
@@ -31,16 +31,18 @@ block content
                         //- td=new Date(task.time_alloted.task_end).toString()
                         td
                             input(type='datetime-local' name='task-end' value=new Date(task.time_alloted.task_end).toISOString().slice(0,-8) min=new Date(task.time_alloted.task_start).toISOString().slice(0,-8) max=new Date(task.time_alloted.task_start + 1000000000).toISOString().slice(0,-8) readonly=!authorized)
-                        td=task.employees.map(emp => emp.display_name).join(', ')
+                        td
+                            select.ui.search.dropdown
+                                
+                                task.employees.map((emp) => {
+                                return `<option value='${emp.display_name}></option>`
+                                });
                         td
                             .ui.form
                                 .inline.field
                                     .ui.checkbox
                                         input(type='checkbox', tabindex='0' name='delete' disabled=!authorized)
-                                        label
-                        td
-                            select.ui.search.dropdown
-                                option(value='User Name')
+                                        label      
 
         if authorized
             button.ui.primary.button#update
