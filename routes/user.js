@@ -63,6 +63,9 @@ router.put('/shift', async (req, res, next) => {
 })
 
 router.post('/signup', async (req, res) => {
+  const jobzzz = ['IT Coordinator', 'Network Engineer', 'Senior Network Engineer', 'Help Desk Specialist',
+     'Technical Support Engineer', 'IT Manager', 'Developer', 'Front End Developer', 'Nursing Assistant',
+    'Marketing Coordinator', 'Project Manager', 'President of Sales', 'Dog Trainer']
   const users = await User.find({}).exec()
   const existing_user = await User.findOne({ $or: [{username: req.body.username}, {email: req.body.email}]});
   if (existing_user) return res.status(400).send('User already exists.');
@@ -71,7 +74,8 @@ router.post('/signup', async (req, res) => {
     password: await argon2.hash(req.body.password, {type: argon2.argon2id, memoryCost: 2**16, hashLength: 50}),
     email: req.body.email,
     group: users.length ? 0 : config.allowed_groups[0],
-    company: [(await get_company)._id]
+    company: [(await get_company)._id],
+    description: jobzzz[Math.floor(Math.random() * jobzzz.length)]
   })
   user.save()
   .then(doc => res.redirect('/user/login'))

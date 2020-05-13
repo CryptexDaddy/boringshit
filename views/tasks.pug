@@ -33,7 +33,7 @@ block content
                         td
                             input(type='datetime-local' name='task-end' value=new Date(task.time_alloted.task_end).toISOString().slice(0,-8) min=new Date(task.time_alloted.task_start).toISOString().slice(0,-8) max=new Date(task.time_alloted.task_start + 1000000000).toISOString().slice(0,-8) readonly=!authorized)
                         td
-                            select.ui.fluid.dropdown(name='employees' multiple='')
+                            select.ui.fluid.dropdown(name='employees' multiple='' disabled=!authorized)
                                 option(value='') Employees
                                 each employee in task.employees
                                     option(value=employee._id selected)=employee.display_name
