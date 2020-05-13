@@ -161,4 +161,11 @@ router.put('/events/delete', isAuthorized, async (req,res,next)=>{
   if (!Object.keys(req.body).length) return res.sendStatus(400);
   Event.deleteMany({_id: {$in: req.body}}).then(() => res.redirect('/calendar')).catch(err => res.send(err))
 })
+router.put('/team/update', isAuthorized, async (req,res,next)=> {
+  if (!Object.keys(req.body).length) return res.sendStatus(400);
+  const selected_user = await User.findOne({_id: req.body.id}).exec();
+  if (!selected_user) return res.sendStatus(400);
+  selected_user.group = req.body.group;
+  selected_user.save().then(doc => res.send(doc)).catch(err => res.send(err))
+})
 module.exports = router;
