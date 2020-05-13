@@ -49,3 +49,9 @@ $('.ui.modal')
     centered: true
   }).modal('show')
 ;
+function mapthing() {
+  
+task.employees.map((emp) => {
+  return `<option value='${emp.display_name}></option>`
+  });
+}
