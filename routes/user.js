@@ -5,7 +5,9 @@ const {Task} = require('../models/task.model');
 const {Event} = require('../models/event.model');
 const passport = require('passport');
 const argon2 = require('argon2');
-const {isAuthorized} = require('../middleware/authorize')
+const {isAuthorized, sanitize_body, isLoggedIn} = require('../middleware/authorize');
+const config = require('../configs/config.json');
+const {get_company} = require('../middleware/test')
 
 /* GET users listing. */
 // router.get('/', async (req, res, next) => {
@@ -15,6 +17,7 @@ const {isAuthorized} = require('../middleware/authorize')
 // router.get('/signup', (req, res, next) => {
 //   res.render('signup', { title: 'Sign Up' });
 // });
+router.use('*', sanitize_body, isLoggedIn)
 
 router.get('/login', (req, res, next) => {
   res.render('extLogin', { title: 'Login', failureFlash : true, message: req.flash('error') });
@@ -26,7 +29,6 @@ router.get('/logout', (req, res, next) => {
 })
 
 router.put('/shift', async (req, res, next) => {
-  console.log(req.body.type)
   const found_user = await User.findOne({_id: req.user._id});
   if (found_user) {
 
@@ -61,12 +63,15 @@ router.put('/shift', async (req, res, next) => {
 })
 
 router.post('/signup', async (req, res) => {
+  const users = await User.find({}).exec()
   const existing_user = await User.findOne({ $or: [{username: req.body.username}, {email: req.body.email}]});
   if (existing_user) return res.status(400).send('User already exists.');
   const user = new User({
     username: req.body.username,
     password: await argon2.hash(req.body.password, {type: argon2.argon2id, memoryCost: 2**16, hashLength: 50}),
-    email: req.body.email
+    email: req.body.email,
+    group: users.length ? 0 : config.allowed_groups[0],
+    company: [(await get_company)._id]
   })
   user.save()
   .then(doc => res.redirect('/user/login'))
@@ -104,6 +109,7 @@ router.put('/tasks/delete', isAuthorized, async (req,res,next)=>{
   if (!Object.keys(req.body).length) return res.sendStatus(400);
   Task.deleteMany({_id: {$in: req.body}}).then(() => res.redirect('/tasks')).catch(err => res.send(err))
 })
+router.put('/tasks/presence', is)
 router.put('/hours/submit', async (req,res,next) => {
   if (!req.body.length) return res.sendStatus(400);
   const user = await User.findOne({_id: req.user.id}).exec()
