@@ -94,7 +94,7 @@ router.put('/tasks/update', isAuthorized, async (req,res,next) => {
     task.time_alloted.task_start = Date.parse(entry.task_start)
     task.time_alloted.task_end = Date.parse(entry.task_end)
     task.status = Number(entry.status)
-    task.employees = entry.employees.length ? entry.employees.split(',') : []
+    task.employees = entry.employees.length ? entry.employees : []
     promises.push(task.save())
     // task.save().then(doc => res.send(doc)).catch(err => res.send(err))
   }
@@ -160,5 +160,12 @@ router.post('/events/create', isAuthorized, async (req,res,next)=>{
 router.put('/events/delete', isAuthorized, async (req,res,next)=>{
   if (!Object.keys(req.body).length) return res.sendStatus(400);
   Event.deleteMany({_id: {$in: req.body}}).then(() => res.redirect('/calendar')).catch(err => res.send(err))
+})
+router.put('/team/update', isAuthorized, async (req,res,next)=> {
+  if (!Object.keys(req.body).length) return res.sendStatus(400);
+  const selected_user = await User.findOne({_id: req.body.id}).exec();
+  if (!selected_user) return res.sendStatus(400);
+  selected_user.group = req.body.group;
+  selected_user.save().then(doc => res.send(doc)).catch(err => res.send(err))
 })
 module.exports = router;

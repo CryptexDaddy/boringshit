@@ -35,8 +35,10 @@ block content
                         td
                             select.ui.fluid.dropdown(name='employees' multiple='' disabled=!authorized)
                                 option(value='') Employees
-                                each employee in task.employees
-                                    option(value=employee._id selected)=employee.display_name
+                                each employee in team_members
+                                    option(value=employee._id selected=task.employees.map(val=>val._id).includes(employee._id))=employee.display_name
+                                //- each employee in task.employees
+                                //-     option(value=employee._id selected)=employee.display_name
                         if authorized
                             td.text_center
                                 .ui.form
@@ -104,8 +106,9 @@ block append js
                         task_start: tr.querySelector('input[name="task-start"]').value,
                         status: tr.querySelector('select[name="status"]').value,
                         task_end: tr.querySelector('input[name="task-end"]').value,
-                        employees: tr.querySelector('select[name="employees"]').value
+                        employees: [...tr.querySelector('select[name="employees"]').selectedOptions].map(val => val.value)
                     }
+                    console.log(obj)
                     obj_arr.push(obj)
                 }
                 fetch(`/user/tasks/update`, {
